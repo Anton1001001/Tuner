@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using NAudio.CoreAudioApi;
 using NAudio.Wave;
 
 namespace WindowsFormsApp6
@@ -120,7 +121,7 @@ namespace WindowsFormsApp6
                 {
                     lock (_lockObject)
                     {
-                        label1.Text = _freq.ToString(CultureInfo.CurrentCulture);
+                        label1.Text = _freq.ToString("F2", CultureInfo.CurrentCulture);
                     }
                 }
 
@@ -129,6 +130,11 @@ namespace WindowsFormsApp6
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            if (_isCapturing)
+            {
+                return;
+            }
+
             _isCapturing = true;
             _threshold = 0;
             _baseGraph = 0;
@@ -146,7 +152,19 @@ namespace WindowsFormsApp6
             
             _waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(Fs, NChannels);
             _waveInEvent = new WaveInEvent();
-            _waveInEvent.DeviceNumber = 0;
+            MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
+            string defaultDevice = enumerator.GetDefaultAudioEndpoint(DataFlow.Capture, Role.Console).ToString();
+            int defaultDeviceId = 0;
+            for (int i = 0; i < WaveIn.DeviceCount; i++)
+            {
+                WaveInCapabilities caps = WaveIn.GetCapabilities(i);
+                if (string.Compare(defaultDevice, 0, caps.ProductName, 0, caps.ProductName.Length,
+                        StringComparison.CurrentCulture) == 0)
+                {
+                    defaultDeviceId = i;
+                }
+            }
+            _waveInEvent.DeviceNumber = defaultDeviceId;
             _waveInEvent.WaveFormat = _waveFormat;
             _waveInEvent.DataAvailable += WaveInDataAvailable;
             _bufferedWaveProvider = new BufferedWaveProvider(_waveFormat)
