@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tunerv1.0", "Tunerv1.0\Tunerv1.0.csproj", "{BCBC1C0F-1D41-4816-9C2D-32FC227D6F27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCBC1C0F-1D41-4816-9C2D-32FC227D6F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCBC1C0F-1D41-4816-9C2D-32FC227D6F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCBC1C0F-1D41-4816-9C2D-32FC227D6F27}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BCBC1C0F-1D41-4816-9C2D-32FC227D6F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBC1C0F-1D41-4816-9C2D-32FC227D6F27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCBC1C0F-1D41-4816-9C2D-32FC227D6F27}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
