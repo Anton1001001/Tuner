@@ -6,8 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-	<skia:SKCanvasView x:Name="canvasView" PaintSurface="OnCanvasViewPaintSurface" android:layout_height="410dp"
-	                   android:layout_width="334dp"/>
+	<!--<skia:SKCanvasView :Name="canvasView" PaintSurface="OnCanvasViewPaintSurface" android:layout_height="410dp"
+	                   android:layout_width="334dp"/>-->
+	<TextView
+			android:id="@+id/label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Enter text here"
+			android:layout_centerInParent="true" />
 	<Button
 			android:text="Button"
 			android:layout_width="135dp"

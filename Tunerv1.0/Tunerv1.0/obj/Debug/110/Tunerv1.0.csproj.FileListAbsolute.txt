@@ -36,12 +36,15 @@ C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\res\values
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\uploadflags.txt
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\resolvedassemblies.hash
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\Java.Interop.dll
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\MathNet.Numerics.dll
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\Microsoft.Win32.Registry.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\Mono.Android.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\Mono.Android.pdb
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\Mono.Security.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\Mono.Security.pdb
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\mscorlib.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\mscorlib.pdb
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\NAudio.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\netstandard.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.ComponentModel.Composition.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.ComponentModel.Composition.pdb
@@ -66,6 +69,8 @@ C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\as
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.Runtime.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.Runtime.Serialization.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.Runtime.Serialization.pdb
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.Security.AccessControl.dll
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.Security.Principal.Windows.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.ServiceModel.Internals.dll
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.ServiceModel.Internals.pdb
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\assets\System.Transactions.dll

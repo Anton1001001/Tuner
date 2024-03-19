@@ -2,6 +2,7 @@ Button;obj\Debug\110\res\layout\activity_main.xml
 CheckBox;obj\Debug\110\res\layout\activity_main.xml
 color;obj\Debug\110\res\values\colors.xml
 color;obj\Debug\110\res\values\ic_launcher_background.xml
+EditText;obj\Debug\110\res\layout\activity_main.xml
 item;obj\Debug\110\res\values\styles.xml
 RelativeLayout;obj\Debug\110\res\layout\activity_main.xml
 resources;obj\Debug\110\res\values\colors.xml
@@ -10,3 +11,4 @@ resources;obj\Debug\110\res\values\strings.xml
 resources;obj\Debug\110\res\values\styles.xml
 string;obj\Debug\110\res\values\strings.xml
 style;obj\Debug\110\res\values\styles.xml
+TextView;obj\Debug\110\res\layout\activity_main.xml

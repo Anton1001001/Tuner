@@ -3,6 +3,11 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "Tunerv1._0.dll" comes first in this list. */
 		"Tunerv1._0.dll",
+		"MathNet.Numerics.dll",
+		"Microsoft.Win32.Registry.dll",
+		"NAudio.dll",
+		"System.Security.AccessControl.dll",
+		"System.Security.Principal.Windows.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",
 		"Xamarin.Android.Arch.Core.Runtime.dll",
 		"Xamarin.Android.Arch.Lifecycle.Common.dll",
