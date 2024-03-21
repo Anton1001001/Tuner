@@ -1,138 +1,52 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Runtime;
 using Android.Widget;
-using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
-using Button = Xamarin.Forms.Button;
 
 namespace Tunerv1._0
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        private SoundCapturer _soundCapturer;
+        private TextView _textView;
+        private const int RequestRecordAudioPermissionCode = 100;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-        }
-    }
-    public partial class MainPage : ContentPage
-    {
-        private StackLayout buttonLayout;
-
-        public MainPage()
-        {
-
-            // Create top layout with six buttons initially
-            buttonLayout = CreateButtonLayout(6);
-
-            // Create middle layout for drawing space
-            var drawingSpace = new BoxView
+            
+            _textView = FindViewById<TextView>(Resource.Id.textView);
+            _soundCapturer = new SoundCapturer();
+            _soundCapturer.FrequencyDetected += SoundCapturer_FrequencyDetected;
+            
+            if (CheckSelfPermission(Manifest.Permission.RecordAudio) != Permission.Granted)
             {
-                BackgroundColor = Color.White,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.FillAndExpand,
-            };
-
-            // Create bottom layout with two comboboxes
-            var comboBoxLayout = new StackLayout
-            {
-                Orientation = StackOrientation.Horizontal,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.End,
-                Padding = new Thickness(10, 5),
-                Children =
-                {
-                    CreateComboBox(1),
-                    CreateComboBox(2)
-                }
-            };
-
-            // Create main layout
-            var mainLayout = new StackLayout
-            {
-                Children =
-                {
-                    buttonLayout,
-                    drawingSpace,
-                    comboBoxLayout
-                }
-            };
-
-            Content = mainLayout;
-        }
-
-        private StackLayout CreateButtonLayout(int numberOfButtons)
-        {
-            var layout = new StackLayout
-            {
-                Orientation = StackOrientation.Horizontal,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.Start,
-                Padding = new Thickness(10, 5)
-            };
-
-            for (int i = 0; i < numberOfButtons; i++)
-            {
-                layout.Children.Add(new Button { Text = $"Button {i + 1}" });
+                RequestPermissions(new [] { Manifest.Permission.RecordAudio }, RequestRecordAudioPermissionCode);
             }
-
-            return layout;
+            
+            _soundCapturer.StartCapture();
         }
-
-        private Picker CreateComboBox(int index)
+        
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-            var comboBox = new Picker
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (requestCode == RequestRecordAudioPermissionCode)
             {
-                Title = $"ComboBox {index}",
-                HorizontalOptions = LayoutOptions.FillAndExpand
-            };
-
-            // Add options to the combobox
-            comboBox.Items.Add("Option 1");
-            comboBox.Items.Add("Option 2");
-            comboBox.Items.Add("Option 3");
-
-            // Handle selection change event
-            comboBox.SelectedIndexChanged += (sender, args) =>
-            {
-
-                var selectedOption = comboBox.Items[comboBox.SelectedIndex];
-                UpdateButtonLayout(selectedOption);
-            };
-
-            return comboBox;
-        }
-
-        private void UpdateButtonLayout(string selectedOption)
-        {
-            // Determine number of buttons based on the selected option
-            int numberOfButtons;
-            switch (selectedOption)
-            {
-                case "Option 1":
-                    numberOfButtons = 3;
-                    break;
-                case "Option 2":
-                    numberOfButtons = 5;
-                    break;
-                case "Option 3":
-                    numberOfButtons = 8;
-                    break;
-                default:
-                    numberOfButtons = 6;
-                    break;
+                if (!(grantResults.Length > 0 && grantResults[0] == Permission.Granted))
+                {
+                    Toast.MakeText(this, "Permission denied to record audio", ToastLength.Short)?.Show();
+                }
             }
-
-            // Remove existing buttons from layout
-            buttonLayout.Children.Clear();
-
-            // Add new buttons to layout
-            buttonLayout = CreateButtonLayout(numberOfButtons);
+        }
+        private void SoundCapturer_FrequencyDetected(object sender, FrequencyDetectedEventArgs e)
+        {
+            RunOnUiThread(() =>
+            {
+                _textView.Text = e.Freq.ToString("F2");
+            });
         }
     }
 }

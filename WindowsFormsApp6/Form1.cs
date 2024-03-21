@@ -10,8 +10,7 @@ namespace WindowsFormsApp6
     public partial class Form1 : Form
     {
         private SoundCapturer _soundCapturer;
-
-
+        
         public Form1()
         {
             InitializeComponent();

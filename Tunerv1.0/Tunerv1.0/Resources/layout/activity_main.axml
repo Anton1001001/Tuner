@@ -9,10 +9,10 @@
 	<!--<skia:SKCanvasView :Name="canvasView" PaintSurface="OnCanvasViewPaintSurface" android:layout_height="410dp"
 	                   android:layout_width="334dp"/>-->
 	<TextView
-			android:id="@+id/label"
+			android:id="@+id/textView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Enter text here"
+			android:text="440"
 			android:layout_centerInParent="true" />
 	<Button
 			android:text="Button"
