@@ -229,3 +229,4 @@ D:\C#Projects\TunerEngine\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_ConvertResour
 D:\C#Projects\TunerEngine\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_GenerateJavaStubs.stamp
 D:\C#Projects\TunerEngine\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_GeneratePackageManagerJava.stamp
 D:\C#Projects\TunerEngine\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_ResolveLibraryProjectImports.stamp
+D:\C#Projects\TunerEngine\Tunerv1.0\Tunerv1.0\obj\Debug\110\android\src\crc6416ab6ffdc6ca5839\MainActivity_DrawingView.java

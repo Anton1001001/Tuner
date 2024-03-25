@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading;
-using NAudio.CoreAudioApi;
-using NAudio.Wave;
 
 namespace WindowsFormsApp6;
 

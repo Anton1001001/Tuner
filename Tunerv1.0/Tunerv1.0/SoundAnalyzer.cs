@@ -88,14 +88,31 @@ namespace Tunerv1._0
             }
 
             while (i < _audioBufferLength - 2) {
-                if (_nsdf[maxArg] < _nsdf[i]-0.07)
+                if (_nsdf[maxArg] < _nsdf[i] - 0.07)
                     maxArg = i;
                 i++;
             }
 
+            maxArg++;
+            if (maxArg == _nsdf.Length + 1)
+            {
+                return _fs / FitStationaryPntPoly2(
+                    maxArg - 1, maxArg, maxArg, 
+                    _nsdf[maxArg - 1-1], _nsdf[maxArg-1], _nsdf[maxArg-1]
+                );
+            }
+            
+            if (maxArg == 1)
+            {
+                return _fs / FitStationaryPntPoly2(
+                    maxArg, maxArg, maxArg + 1, 
+                    _nsdf[maxArg - 1], _nsdf[maxArg - 1], _nsdf[maxArg + 1 - 1]
+                );
+            }
+
             return _fs / FitStationaryPntPoly2(
                 maxArg - 1, maxArg, maxArg + 1, 
-                _nsdf[maxArg - 1], _nsdf[maxArg], _nsdf[maxArg + 1]
+                _nsdf[maxArg - 1 - 1], _nsdf[maxArg - 1], _nsdf[maxArg + 1 - 1]
             );
         }
     }

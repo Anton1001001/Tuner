@@ -1,9 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Android.Media;
+using Android.Util;
 
 namespace Tunerv1._0
 {
+    public class Sound
+    {
+        public Sound(double volume, double frequency)
+        {
+            Volume = volume;
+            Frequency = frequency;
+        }
+
+        public double Frequency { get; set; }
+        public double Volume { get; set; }
+    }
+
     public class FrequencyDetectedEventArgs : EventArgs
     {
         public double Freq { get; }
@@ -13,44 +28,34 @@ namespace Tunerv1._0
             Freq = freq;
         }
     }
+
     public sealed class SoundCapturer
     {
         private AudioRecord _audioRecord;
         private int _bufferSize;
-        
+        private Queue<Sound> _queue;
         private AutoResetEvent _soundCaptureEvent;
         private AutoResetEvent _displayFrequencyEvent;
         private Thread _soundCaptureThread;
         private Thread _displayFrequencyThread;
         private SoundAnalyzer _analyzer;
-        private int _baseGraph;
-        private int _lastSample;
         private double[] _audioBuffer;
-        private float _threshold;
-        private float[] _graphBuffer;
         private bool _isCapturing;
         private double _freq;
-
-        private const int RefreshPeriod = 30;
-        private const int NSecGraph = 5;
-        private const float MaxAmplitude = 32767.0f;
-        private const int SamplePerRefresh = 20;
-        private const int GraphBuffSize = NSecGraph * 1000 / RefreshPeriod * SamplePerRefresh;
-        private const int BarSteps = 30;
-        private const float MicThreshold = BarSteps * 0.05f;
+        private float[] _buffer;
+        private const double MaxAmplitude = 1.0f;
+        private const double MicThreshold = 0.05f;
         private const int SampleRate = 44100;
         private const int DeltaMills = 30;
-        private const int NFrames = (SampleRate * DeltaMills / 1000);
-        private const int FramesPerBuffer = NFrames;
-        private readonly object _lockObject = new object();
-        
+        private const int FramesPerBuffer = SampleRate * DeltaMills / 1000;
+        private List<Sound> _data;
         public event EventHandler<FrequencyDetectedEventArgs> FrequencyDetected;
 
         private void OnFrequencyDetected(FrequencyDetectedEventArgs e)
         {
             FrequencyDetected?.Invoke(this, e);
         }
-        
+
         public void ReleaseResources()
         {
             if (_isCapturing)
@@ -62,16 +67,16 @@ namespace Tunerv1._0
                 _displayFrequencyThread.Join();
             }
         }
-        
+
         public void StartCapture()
         {
             if (_isCapturing)
             {
                 return;
             }
-            
+
             ChannelIn channelConfig = ChannelIn.Stereo;
-            Encoding audioFormat = Encoding.Pcm16bit;
+            Encoding audioFormat = Encoding.PcmFloat;
             _bufferSize = AudioRecord.GetMinBufferSize(SampleRate, channelConfig, audioFormat);
             _audioRecord = new AudioRecord(
                 AudioSource.Mic,
@@ -79,110 +84,119 @@ namespace Tunerv1._0
                 channelConfig,
                 audioFormat,
                 _bufferSize);
-            
-            _threshold = 0;
-            _baseGraph = 0;
-            _lastSample = 0;
-            _graphBuffer = new float[GraphBuffSize + 1];
+
+            _buffer = new float[_bufferSize];
+            _queue = new Queue<Sound>();
+            _data = new List<Sound>();
             _audioBuffer = new double[FramesPerBuffer];
-            _analyzer = new SoundAnalyzer(_audioBuffer, SampleRate);
+            _analyzer = new SoundAnalyzer(_audioBuffer,SampleRate);
             _soundCaptureEvent = new AutoResetEvent(false);
             _displayFrequencyEvent = new AutoResetEvent(false);
             _soundCaptureThread = new Thread(SoundCaptureThreadLoop);
-            _displayFrequencyThread = new Thread(DisplayFrequencyThreadLoop);
-            
+            //_displayFrequencyThread = new Thread(DisplayFrequencyThreadLoop);
+
             _isCapturing = true;
             _audioRecord.StartRecording();
             _soundCaptureThread.Start();
             _soundCaptureEvent.Set();
-            _displayFrequencyThread.Start();
+            //_displayFrequencyThread.Start();
         }
-        
+
+        private static List<Sound> FindLongestSubsequence(List<Sound> values, double delta)
+        {
+            List<KeyValuePair<int, Sound>> indexedValues = new List<KeyValuePair<int, Sound>>();
+            for (int i = 0; i < values.Count; i++)
+            {
+                indexedValues.Add(new KeyValuePair<int, Sound>(i, values[i]));
+            }
+
+            indexedValues.Sort((x, y) => x.Value.Frequency.CompareTo(y.Value.Frequency));
+
+            List<KeyValuePair<int, Sound>> longestSubsequence = new List<KeyValuePair<int, Sound>>();
+            for (int i = 0; i < indexedValues.Count; i++)
+            {
+                List<KeyValuePair<int, Sound>> curSubsequence = new List<KeyValuePair<int, Sound>>();
+                curSubsequence.Add(indexedValues[i]);
+                double maxValue = indexedValues[i].Value.Frequency + delta;
+
+                for (int j = i + 1; j < indexedValues.Count; j++)
+                {
+                    if (indexedValues[j].Value.Frequency <= maxValue)
+                    {
+                        curSubsequence.Add(indexedValues[j]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                if (curSubsequence.Count > longestSubsequence.Count)
+                {
+                    longestSubsequence = curSubsequence;
+                }
+            }
+
+            longestSubsequence.Sort((x, y) => x.Key.CompareTo(y.Key));
+
+            return longestSubsequence.Select(kv => kv.Value).ToList();
+        }
         private void SoundCaptureThreadLoop()
         {
             try
             {
                 while (_isCapturing)
                 {
-                    _soundCaptureEvent.WaitOne();
-                    byte[] buffer = new byte[_bufferSize];
-                    int bytesRead = _audioRecord.Read(buffer, 0, buffer.Length);
-                    float[] samples = new float[bytesRead / 2];
-                    
-                    for (int i = 0, j = 0; i < bytesRead; i += 2, j++)
-                    {
-                        samples[j] = BitConverter.ToInt16(buffer, i);
-                    }
+                    _audioRecord.Read(_buffer, 0, _buffer.Length, (int)AudioRecordReadOptions.NonBlocking);
 
                     for (int i = 0; i < FramesPerBuffer; i++)
                     {
-                        lock (_lockObject)
-                        {
-                            _audioBuffer[i] = (double)(samples[i * 2] + samples[i * 2 + 1]) / 2;
-                        }
+                        _audioBuffer[i] = (double)(_buffer[i * 2] + _buffer[i * 2 + 1]) / 2;
                     }
 
-                    lock (_lockObject)
-                    {
-                        _freq = _analyzer.CalculateFrequency();
-                    }
+                    _freq = _analyzer.CalculateFrequency(); 
+                    _data.Add(new Sound(_audioBuffer.Max() / MaxAmplitude, _freq));
                     
-                    _displayFrequencyEvent.Set();
+                    if (_data.Count == 10)
+                    {
+                        var tmp= FindLongestSubsequence(_data, 2.0f);
+                        _data.Clear();
+
+                        foreach (var e in tmp)
+                        {
+                            if (e.Volume > MicThreshold) 
+                                    OnFrequencyDetected(new FrequencyDetectedEventArgs(e.Frequency));
+                        }
+                    }
                 }
             }
-            finally
+            catch (Exception e)
             {
+                Log.Error("SoundCapturer", $"Error occurred: {e.Message}");
                 _audioRecord.Stop();
             }
         }
 
-        float GetSample(int i)
-        {
-            if (i > FramesPerBuffer) return 0;
-            float sampleValue;
-            lock (_lockObject)
-            {
-                sampleValue = (float)Math.Abs(_audioBuffer[i]);
-            }
 
-            return sampleValue;
-        }
-
-        private void DisplayFrequencyThreadLoop()
+        /*private void DisplayFrequencyThreadLoop()
         {
             while (_isCapturing)
             {
-                _displayFrequencyEvent.WaitOne();
-                _baseGraph = (_baseGraph + SamplePerRefresh) % (2 * GraphBuffSize + 1);
-                for (int i = 0, j = 0; i < SamplePerRefresh; i++, j += NFrames / SamplePerRefresh)
+                if (_queue.Count > 0)
                 {
-                    _graphBuffer[(_lastSample + i) % (GraphBuffSize + 1)] = GetSample(j);
-                }
-
-                _lastSample = (_lastSample + SamplePerRefresh) % (2 * GraphBuffSize + 1);
-                _threshold = 0f;
-
-                for (int i = 0; i < SamplePerRefresh; i++)
-                {
-                    var tmpThreshold = _graphBuffer[(_lastSample + GraphBuffSize - i) % (GraphBuffSize + 1)] /
-                        MaxAmplitude * BarSteps;
-                    if (tmpThreshold > _threshold)
-                    {
-                        _threshold = tmpThreshold;
-                    }
-                }
-
-                if (_threshold > MicThreshold)
-                {
+                    Sound elem;
                     lock (_lockObject)
                     {
-                        OnFrequencyDetected(new FrequencyDetectedEventArgs(_freq));
+                        elem = _queue.Dequeue();
+                    }
+
+                    if (elem.Volume > MicThreshold)
+                    {
+                        OnFrequencyDetected(new FrequencyDetectedEventArgs(elem.Frequency));
                     }
                 }
 
-                _soundCaptureEvent.Set();
-
             }
-        }
+        }*/
     }
 }
