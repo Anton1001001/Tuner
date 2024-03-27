@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -145,8 +145,14 @@ namespace Tunerv1._0
         {
             try
             {
+                Queue<double> inputFreq = new Queue<double>();
+                int lowBorder = 20;
+                int highBorder = 20000;
+                int step = 10;
+                int[] freqCount = new int[(highBorder - lowBorder) / step];
                 while (_isCapturing)
                 {
+                    
                     _audioRecord.Read(_buffer, 0, _buffer.Length, (int)AudioRecordReadOptions.NonBlocking);
 
                     for (int i = 0; i < FramesPerBuffer; i++)
@@ -154,19 +160,32 @@ namespace Tunerv1._0
                         _audioBuffer[i] = (double)(_buffer[i * 2] + _buffer[i * 2 + 1]) / 2;
                     }
 
-                    _freq = _analyzer.CalculateFrequency(); 
-                    _data.Add(new Sound(_audioBuffer.Max() / MaxAmplitude, _freq));
-                    
-                    if (_data.Count == 10)
-                    {
-                        var tmp= FindLongestSubsequence(_data, 2.0f);
-                        _data.Clear();
+                    _freq = _analyzer.CalculateFrequency();
+                    Sound newSound = new Sound(_audioBuffer.Max() / MaxAmplitude, _freq);
 
-                        foreach (var e in tmp)
+                    if (newSound.Volume < MicThreshold)
+                    {
+                        continue;
+                    }
+                    
+                    inputFreq.Enqueue(newSound.Frequency);
+                    freqCount[(int)((newSound.Frequency - lowBorder) / step)]++;
+                    
+                    if (inputFreq.Count() >= 10)
+                    {
+                        double freq = inputFreq.Dequeue();
+                        int rangeIdx = (int)((freq - lowBorder) / step);
+                        int count = 0;
+                        count += freqCount[rangeIdx];
+                        count += rangeIdx > 0 ? freqCount[rangeIdx - 1] : 0;
+                        count += rangeIdx > freqCount.Length ? freqCount[rangeIdx - 1] : 0;
+
+                        if (count >= 6)
                         {
-                            if (e.Volume > MicThreshold) 
-                                    OnFrequencyDetected(new FrequencyDetectedEventArgs(e.Frequency));
+                            OnFrequencyDetected(new FrequencyDetectedEventArgs(freq));
                         }
+
+                        freqCount[rangeIdx]--;
                     }
                 }
             }

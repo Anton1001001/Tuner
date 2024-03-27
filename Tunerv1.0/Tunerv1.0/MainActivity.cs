@@ -119,7 +119,8 @@ namespace Tunerv1._0
                 canvas.DrawLine(lineX, 0, lineX, screenHeight, _paint);
                 
                 canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
-                var frequencyText = "Frequency: " + parsedFrequency.ToString("F2"); 
+                var frequencyText = "Frequency: " + parsedFrequency.ToString("F2");
+                _paint.TextSize = 100;
                 canvas.DrawText(frequencyText, 0, _paint.TextSize, _paint);
             }
         }
