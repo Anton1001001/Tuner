@@ -1,1 +1,1 @@
-<resources><string name="app_name">Tunerv1._0</string><string name="action_settings">Settings</string></resources>
+<resources><string name="app_name">Tunerv1.0</string><string name="action_settings">Settings</string><string name="instrument_prompt">Choose an instrument</string><string-array name="instruments_array"><item>Guitar</item><item>Violin</item></string-array></resources>

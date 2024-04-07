@@ -1,4 +1,5 @@
-﻿using Android;
+﻿using System;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -18,6 +19,10 @@ namespace Tunerv1._0
         private const int RequestRecordAudioPermissionCode = 100;
         private static double freq;
         private static object lockObject = new object(); 
+        
+        private int stringButtonsLayoutIndex;
+        private ViewGroup mainView;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,6 +38,50 @@ namespace Tunerv1._0
             }
             
             _soundCapturer.StartCapture();
+            
+            
+            // base.OnCreate(savedInstanceState);
+            // SetContentView(Resource.Layout.activity_main);
+            // RelativeLayout guitarButtonsLayout = FindViewById<RelativeLayout>(Resource.Id.guitarButtonsLayout);
+            // View guitarButtonsView = guitarButtonsLayout;
+            // mainView = (ViewGroup)guitarButtonsView.Parent;
+            // stringButtonsLayoutIndex = mainView.IndexOfChild(guitarButtonsLayout);
+            // Spinner instrumentSpinner = FindViewById<Spinner> (Resource.Id.instrumentsSpinner);
+            //
+            // instrumentSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (instrumentSpinner_ItemSelected);
+            // var instrumentsAdapter = ArrayAdapter.CreateFromResource (
+            //     this, Resource.Array.instruments_array, Android.Resource.Layout.SimpleSpinnerItem);
+            //
+            // instrumentsAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            // instrumentSpinner.Adapter = instrumentsAdapter;
+            
+        }
+        
+        
+        private void instrumentSpinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            string instrument = (string)spinner.GetItemAtPosition(e.Position);
+
+            switch (instrument)
+            {
+                case "Guitar":
+                    View guitarLayout = LayoutInflater.Inflate(Resource.Layout.guitar_buttons_layout, mainView, false);
+                    RelativeLayout guitarButtonsLayout = FindViewById<RelativeLayout>(Resource.Id.guitarButtonsLayout);
+                    
+                    mainView.RemoveViewAt(stringButtonsLayoutIndex);
+
+                    mainView.AddView(guitarLayout, stringButtonsLayoutIndex);
+                    break;
+                case "Violin":
+                    View violinLayout = LayoutInflater.Inflate(Resource.Layout.violin_buttons_layout, mainView, false);
+                    RelativeLayout violinButtonsLayout = FindViewById<RelativeLayout>(Resource.Id.guitarButtonsLayout);
+                    
+                    mainView.RemoveViewAt(stringButtonsLayoutIndex);
+
+                    mainView.AddView(violinLayout, stringButtonsLayoutIndex);
+                    break;
+            }
         }
         
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -60,7 +109,7 @@ namespace Tunerv1._0
         public class DrawingView : View
         {
             private Paint _paint;
-            private float _frequency = 329.63f; // Пример частоты
+            private float _frequency = 110.63f; // Пример частоты
             private int _circleRadius = 10; // Радиус кружка
             private Paint _circle;
             float minFrequency = 329.63f - 40;
@@ -122,7 +171,10 @@ namespace Tunerv1._0
                 var frequencyText = "Frequency: " + parsedFrequency.ToString("F2");
                 _paint.TextSize = 100;
                 canvas.DrawText(frequencyText, 0, _paint.TextSize, _paint);
+                var note = "note" + _frequency.ToString("F2"); 
+                canvas.DrawText(note, 100, _paint.TextSize+100, _paint);
             }
         }
+        
     }
 }
