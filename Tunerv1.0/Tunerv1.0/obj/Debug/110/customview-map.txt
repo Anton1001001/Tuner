@@ -7,6 +7,7 @@ color;obj\Debug\110\res\values\colors.xml
 color;obj\Debug\110\res\values\ic_launcher_background.xml
 corners;obj\Debug\110\res\drawable\button_state.xml
 corners;obj\Debug\110\res\drawable\rounded_background.xml
+FrameLayout;obj\Debug\110\res\layout\activity_main.xml
 item;obj\Debug\110\res\drawable\button_state.xml
 item;obj\Debug\110\res\values\strings.xml
 item;obj\Debug\110\res\values\styles.xml
@@ -30,4 +31,5 @@ string;obj\Debug\110\res\values\strings.xml
 string-array;obj\Debug\110\res\values\strings.xml
 style;obj\Debug\110\res\values\styles.xml
 TextView;obj\Debug\110\res\layout\activity_main.xml
+ToggleButton;obj\Debug\110\res\layout\activity_main.xml
 ToggleButton;obj\Debug\110\res\layout\string_button.xml

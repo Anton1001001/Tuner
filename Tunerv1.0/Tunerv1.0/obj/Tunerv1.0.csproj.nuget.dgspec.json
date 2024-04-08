@@ -1,22 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj": {}
+    "D:\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj": {
+    "D:\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj",
+        "projectUniqueName": "D:\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj",
         "projectName": "Tunerv1._0",
-        "projectPath": "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj",
-        "packagesPath": "C:\\Users\\Melekit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\obj\\",
+        "projectPath": "D:\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj",
+        "packagesPath": "C:\\Users\\Повелитель мух\\.nuget\\packages\\",
+        "outputPath": "D:\\Tuner\\Tunerv1.0\\Tunerv1.0\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Melekit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Повелитель мух\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "monoandroid11.0"

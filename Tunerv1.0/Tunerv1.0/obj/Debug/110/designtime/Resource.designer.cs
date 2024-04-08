@@ -3167,68 +3167,68 @@ namespace Tunerv1._0
 			// aapt resource value: 0x7F09002B
 			public const int center_vertical = 2131296299;
 			
-			// aapt resource value: 0x7F09002D
-			public const int checkbox = 2131296301;
-			
 			// aapt resource value: 0x7F09002C
-			public const int checkBox = 2131296300;
+			public const int checkbox = 2131296300;
+			
+			// aapt resource value: 0x7F09002D
+			public const int chronometer = 2131296301;
 			
 			// aapt resource value: 0x7F09002E
-			public const int chronometer = 2131296302;
+			public const int clip_horizontal = 2131296302;
 			
 			// aapt resource value: 0x7F09002F
-			public const int clip_horizontal = 2131296303;
+			public const int clip_vertical = 2131296303;
 			
 			// aapt resource value: 0x7F090030
-			public const int clip_vertical = 2131296304;
+			public const int collapseActionView = 2131296304;
 			
 			// aapt resource value: 0x7F090031
-			public const int collapseActionView = 2131296305;
+			public const int container = 2131296305;
 			
 			// aapt resource value: 0x7F090032
-			public const int container = 2131296306;
+			public const int content = 2131296306;
 			
 			// aapt resource value: 0x7F090033
-			public const int content = 2131296307;
+			public const int contentPanel = 2131296307;
 			
 			// aapt resource value: 0x7F090034
-			public const int contentPanel = 2131296308;
-			
-			// aapt resource value: 0x7F090035
-			public const int coordinator = 2131296309;
+			public const int coordinator = 2131296308;
 			
 			// aapt resource value: 0x7F090001
 			public const int CTRL = 2131296257;
 			
+			// aapt resource value: 0x7F090035
+			public const int custom = 2131296309;
+			
 			// aapt resource value: 0x7F090036
-			public const int custom = 2131296310;
+			public const int customPanel = 2131296310;
 			
 			// aapt resource value: 0x7F090037
-			public const int customPanel = 2131296311;
+			public const int decor_content_parent = 2131296311;
 			
 			// aapt resource value: 0x7F090038
-			public const int decor_content_parent = 2131296312;
+			public const int default_activity_button = 2131296312;
 			
 			// aapt resource value: 0x7F090039
-			public const int default_activity_button = 2131296313;
+			public const int design_bottom_sheet = 2131296313;
 			
 			// aapt resource value: 0x7F09003A
-			public const int design_bottom_sheet = 2131296314;
+			public const int design_menu_item_action_area = 2131296314;
 			
 			// aapt resource value: 0x7F09003B
-			public const int design_menu_item_action_area = 2131296315;
+			public const int design_menu_item_action_area_stub = 2131296315;
 			
 			// aapt resource value: 0x7F09003C
-			public const int design_menu_item_action_area_stub = 2131296316;
+			public const int design_menu_item_text = 2131296316;
 			
 			// aapt resource value: 0x7F09003D
-			public const int design_menu_item_text = 2131296317;
+			public const int design_navigation_view = 2131296317;
 			
 			// aapt resource value: 0x7F09003E
-			public const int design_navigation_view = 2131296318;
+			public const int disableHome = 2131296318;
 			
 			// aapt resource value: 0x7F09003F
-			public const int disableHome = 2131296319;
+			public const int drawingContainer = 2131296319;
 			
 			// aapt resource value: 0x7F090040
 			public const int edit_query = 2131296320;
@@ -3551,14 +3551,14 @@ namespace Tunerv1._0
 			// aapt resource value: 0x7F0900A6
 			public const int text2 = 2131296422;
 			
+			// aapt resource value: 0x7F0900AB
+			public const int textinput_counter = 2131296427;
+			
 			// aapt resource value: 0x7F0900AC
-			public const int textinput_counter = 2131296428;
+			public const int textinput_error = 2131296428;
 			
 			// aapt resource value: 0x7F0900AD
-			public const int textinput_error = 2131296429;
-			
-			// aapt resource value: 0x7F0900AE
-			public const int textinput_helper_text = 2131296430;
+			public const int textinput_helper_text = 2131296429;
 			
 			// aapt resource value: 0x7F0900A7
 			public const int textSpacerNoButtons = 2131296423;
@@ -3570,73 +3570,70 @@ namespace Tunerv1._0
 			public const int textStart = 2131296425;
 			
 			// aapt resource value: 0x7F0900AA
-			public const int textView = 2131296426;
+			public const int text_input_password_toggle = 2131296426;
 			
-			// aapt resource value: 0x7F0900AB
-			public const int text_input_password_toggle = 2131296427;
+			// aapt resource value: 0x7F0900AE
+			public const int time = 2131296430;
 			
 			// aapt resource value: 0x7F0900AF
-			public const int time = 2131296431;
+			public const int title = 2131296431;
 			
 			// aapt resource value: 0x7F0900B0
-			public const int title = 2131296432;
+			public const int titleDividerNoCustom = 2131296432;
 			
 			// aapt resource value: 0x7F0900B1
-			public const int titleDividerNoCustom = 2131296433;
+			public const int title_template = 2131296433;
 			
 			// aapt resource value: 0x7F0900B2
-			public const int title_template = 2131296434;
+			public const int top = 2131296434;
 			
 			// aapt resource value: 0x7F0900B3
-			public const int top = 2131296435;
+			public const int topPanel = 2131296435;
 			
 			// aapt resource value: 0x7F0900B4
-			public const int topPanel = 2131296436;
+			public const int touch_outside = 2131296436;
 			
 			// aapt resource value: 0x7F0900B5
-			public const int touch_outside = 2131296437;
+			public const int transition_current_scene = 2131296437;
 			
 			// aapt resource value: 0x7F0900B6
-			public const int transition_current_scene = 2131296438;
+			public const int transition_layout_save = 2131296438;
 			
 			// aapt resource value: 0x7F0900B7
-			public const int transition_layout_save = 2131296439;
+			public const int transition_position = 2131296439;
 			
 			// aapt resource value: 0x7F0900B8
-			public const int transition_position = 2131296440;
+			public const int transition_scene_layoutid_cache = 2131296440;
 			
 			// aapt resource value: 0x7F0900B9
-			public const int transition_scene_layoutid_cache = 2131296441;
+			public const int transition_transform = 2131296441;
 			
 			// aapt resource value: 0x7F0900BA
-			public const int transition_transform = 2131296442;
+			public const int tuningSpinner = 2131296442;
 			
 			// aapt resource value: 0x7F0900BB
-			public const int tuningSpinner = 2131296443;
+			public const int uniform = 2131296443;
 			
 			// aapt resource value: 0x7F0900BC
-			public const int uniform = 2131296444;
+			public const int unlabeled = 2131296444;
 			
 			// aapt resource value: 0x7F0900BD
-			public const int unlabeled = 2131296445;
+			public const int up = 2131296445;
 			
 			// aapt resource value: 0x7F0900BE
-			public const int up = 2131296446;
+			public const int useLogo = 2131296446;
 			
 			// aapt resource value: 0x7F0900BF
-			public const int useLogo = 2131296447;
+			public const int view_offset_helper = 2131296447;
 			
 			// aapt resource value: 0x7F0900C0
-			public const int view_offset_helper = 2131296448;
+			public const int visible = 2131296448;
 			
 			// aapt resource value: 0x7F0900C1
-			public const int visible = 2131296449;
+			public const int withText = 2131296449;
 			
 			// aapt resource value: 0x7F0900C2
-			public const int withText = 2131296450;
-			
-			// aapt resource value: 0x7F0900C3
-			public const int wrap_content = 2131296451;
+			public const int wrap_content = 2131296450;
 			
 			static Id()
 			{

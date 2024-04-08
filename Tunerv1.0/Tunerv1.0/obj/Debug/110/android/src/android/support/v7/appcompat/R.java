@@ -628,14 +628,14 @@ public final class R {
 		public static final int blocking = 0x7f090020;
 		public static final int bottom = 0x7f090021;
 		public static final int buttonPanel = 0x7f090028;
-		public static final int checkbox = 0x7f09002d;
-		public static final int chronometer = 0x7f09002e;
-		public static final int content = 0x7f090033;
-		public static final int contentPanel = 0x7f090034;
-		public static final int custom = 0x7f090036;
-		public static final int customPanel = 0x7f090037;
-		public static final int decor_content_parent = 0x7f090038;
-		public static final int default_activity_button = 0x7f090039;
+		public static final int checkbox = 0x7f09002c;
+		public static final int chronometer = 0x7f09002d;
+		public static final int content = 0x7f090032;
+		public static final int contentPanel = 0x7f090033;
+		public static final int custom = 0x7f090035;
+		public static final int customPanel = 0x7f090036;
+		public static final int decor_content_parent = 0x7f090037;
+		public static final int default_activity_button = 0x7f090038;
 		public static final int edit_query = 0x7f090040;
 		public static final int end = 0x7f090041;
 		public static final int expand_activities_button = 0x7f090045;
@@ -699,15 +699,15 @@ public final class R {
 		public static final int text2 = 0x7f0900a6;
 		public static final int textSpacerNoButtons = 0x7f0900a7;
 		public static final int textSpacerNoTitle = 0x7f0900a8;
-		public static final int time = 0x7f0900af;
-		public static final int title = 0x7f0900b0;
-		public static final int titleDividerNoCustom = 0x7f0900b1;
-		public static final int title_template = 0x7f0900b2;
-		public static final int top = 0x7f0900b3;
-		public static final int topPanel = 0x7f0900b4;
-		public static final int uniform = 0x7f0900bc;
-		public static final int up = 0x7f0900be;
-		public static final int wrap_content = 0x7f0900c3;
+		public static final int time = 0x7f0900ae;
+		public static final int title = 0x7f0900af;
+		public static final int titleDividerNoCustom = 0x7f0900b0;
+		public static final int title_template = 0x7f0900b1;
+		public static final int top = 0x7f0900b2;
+		public static final int topPanel = 0x7f0900b3;
+		public static final int uniform = 0x7f0900bb;
+		public static final int up = 0x7f0900bd;
+		public static final int wrap_content = 0x7f0900c2;
 	}
 	public static final class integer {
 		public static final int abc_config_activityDefaultDur = 0x7f0a0000;
