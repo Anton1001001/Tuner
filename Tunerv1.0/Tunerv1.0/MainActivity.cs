@@ -70,6 +70,8 @@ namespace Tunerv1._0
             guitarButtonE.Click += (sender, e) =>
             {
                 drawingView.Frequency = 82.41f;
+                drawingView.minFrequency = 82.41f - 40;
+                drawingView.maxFrequency = 82.41f + 40;
                 drawingView.Note = "E";
 
             };
@@ -78,6 +80,8 @@ namespace Tunerv1._0
             guitarButtonA.Click += (sender, e) =>
             {
                 drawingView.Frequency = 110.00f;
+                drawingView.minFrequency = 110.00f - 40;
+                drawingView.maxFrequency = 110.00f + 40;
                 drawingView.Note = "A";
 
             };
@@ -86,6 +90,8 @@ namespace Tunerv1._0
             guitarButtonD.Click += (sender, e) =>
             {
                 drawingView.Frequency = 147.83f;
+                drawingView.minFrequency = 147.83f - 40;
+                drawingView.maxFrequency = 147.83f + 40;
                 drawingView.Note = "D";
 
             };
@@ -93,7 +99,9 @@ namespace Tunerv1._0
             Button guitarButtonG = guitarLayout.FindViewById<Button>(Resource.Id.buttonG);
             guitarButtonG.Click += (sender, e) =>
             {
-                drawingView.Frequency = 196.00f;
+                drawingView.Frequency = 196.00f;               
+                drawingView.minFrequency = 196.00f - 40;
+                drawingView.maxFrequency = 196.00f + 40;
                 drawingView.Note = "G";
 
             };
@@ -102,6 +110,8 @@ namespace Tunerv1._0
             guitarButtonB.Click += (sender, e) =>
             {
                 drawingView.Frequency = 246.96f;
+                drawingView.minFrequency = 246.96f - 40;
+                drawingView.maxFrequency = 246.96f + 40;
                 drawingView.Note = "B";
 
             };
@@ -110,6 +120,8 @@ namespace Tunerv1._0
             guitarButtonE2.Click += (sender, e) =>
             {
                 drawingView.Frequency = 329.63f;
+                drawingView.minFrequency = 329.63f - 40;
+                drawingView.maxFrequency = 329.63f + 40;
                 drawingView.Note = "E";
 
             };
@@ -146,12 +158,12 @@ namespace Tunerv1._0
         public class DrawingView : View
          {
              private Paint _paint;
-             public float Frequency = 110.06f; // Пример частоты
-             public string Note = "A"; // Пример частоты
+             public float Frequency; // Пример частоты
+             public string Note = ""; // Пример частоты
              private int _circleRadius = 10; // Радиус кружка
              private Paint _circle;
-             float minFrequency = 329.63f - 40;
-             float maxFrequency = 329.63f + 40;
+             public float minFrequency = 329.63f - 40;
+             public float maxFrequency = 329.63f + 40;
              private System.Timers.Timer _timer;
 
              public DrawingView(Context context) : base(context)
@@ -189,7 +201,7 @@ namespace Tunerv1._0
              protected override void OnDraw(Canvas canvas)
              {
                  base.OnDraw(canvas);
-                 
+    
                  var screenWidth = Width / 2;
                  var screenHeight = Height / 2;
                  double parsedFrequency = 0;
@@ -199,19 +211,20 @@ namespace Tunerv1._0
                  }
 
                  var percentage = (parsedFrequency - minFrequency) / (maxFrequency - minFrequency);
-                 
+    
                  var circleX = (int)(screenWidth * percentage);
-                 
+    
                  var lineX = screenWidth / 2;
-                 canvas.DrawLine(lineX, 0, lineX, screenHeight, _paint);
-                 
-                 canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
+                 canvas.DrawLine(lineX, 0, lineX, screenHeight, _paint); // Рисуем вертикальную линию по центру
+
+                 canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle); // Рисуем круг
                  var frequencyText = "Frequency: " + parsedFrequency.ToString("F2");
                  _paint.TextSize = 50;
-                 canvas.DrawText(frequencyText, 0, _paint.TextSize, _paint);
+                 canvas.DrawText(frequencyText, 0, _paint.TextSize, _paint); // Отображаем текст частоты
                  var note = "Note " + Note + " Frequency " + Frequency.ToString("F2"); 
-                 canvas.DrawText(note, 0, _paint.TextSize+100, _paint);
+                 canvas.DrawText(note, 0, _paint.TextSize+100, _paint); // Отображаем текст ноты и частоты
              }
+
          }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
