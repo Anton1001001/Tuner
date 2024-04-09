@@ -160,10 +160,10 @@ namespace Tunerv1._0
              private Paint _paint;
              public float Frequency; // Пример частоты
              public string Note = ""; // Пример частоты
-             private int _circleRadius = 10; // Радиус кружка
+             private int _circleRadius = 20; // Радиус кружка
              private Paint _circle;
-             public float minFrequency = 329.63f - 40;
-             public float maxFrequency = 329.63f + 40;
+             public float minFrequency;
+             public float maxFrequency;
              private System.Timers.Timer _timer;
 
              public DrawingView(Context context) : base(context)
@@ -187,13 +187,12 @@ namespace Tunerv1._0
                  };
                  _timer = new System.Timers.Timer(30);
                  _timer.Elapsed += OnTimerElapsed;
-                 _timer.AutoReset = true; // Запускать таймер снова после каждого срабатывания
+                 _timer.AutoReset = true;
                  _timer.Start();
              }
              
              private void OnTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
              {
-                 // Перерисовываем элемент управления
                  PostInvalidate();
              }
 
@@ -202,8 +201,10 @@ namespace Tunerv1._0
              {
                  base.OnDraw(canvas);
     
-                 var screenWidth = Width / 2;
-                 var screenHeight = Height / 2;
+                 
+                 
+                 var screenWidth = Width;
+                 var screenHeight = Height;
                  double parsedFrequency = 0;
                  lock (lockObject)
                  {
@@ -214,15 +215,18 @@ namespace Tunerv1._0
     
                  var circleX = (int)(screenWidth * percentage);
     
-                 var lineX = screenWidth / 2;
-                 canvas.DrawLine(lineX, 0, lineX, screenHeight, _paint); // Рисуем вертикальную линию по центру
+                 
 
-                 canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle); // Рисуем круг
+                 canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
+                 
+                 var lineX = screenWidth / 2;
+                 canvas.DrawLine(lineX, 0, lineX, screenHeight, _paint);
+                 
                  var frequencyText = "Frequency: " + parsedFrequency.ToString("F2");
                  _paint.TextSize = 50;
-                 canvas.DrawText(frequencyText, 0, _paint.TextSize, _paint); // Отображаем текст частоты
+                 canvas.DrawText(frequencyText, 0, _paint.TextSize, _paint);
                  var note = "Note " + Note + " Frequency " + Frequency.ToString("F2"); 
-                 canvas.DrawText(note, 0, _paint.TextSize+100, _paint); // Отображаем текст ноты и частоты
+                 canvas.DrawText(note, 0, _paint.TextSize+100, _paint);
              }
 
          }
