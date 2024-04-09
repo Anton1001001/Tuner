@@ -62,71 +62,35 @@ namespace Tunerv1._0
    
         }
         
-        private void SetupGuitarLayout(View guitarLayout)
+        private void SetupLayout(View layout, Button button, float frequency, string note)
         {
-            //var drawingView = new DrawingView(this);
-            
-            Button guitarButtonE = guitarLayout.FindViewById<Button>(Resource.Id.buttonE);
-            guitarButtonE.Click += (sender, e) =>
+            button.Click += (sender, e) =>
             {
-                drawingView.Frequency = 82.41f;
-                drawingView.minFrequency = 82.41f - 40;
-                drawingView.maxFrequency = 82.41f + 40;
-                drawingView.Note = "E";
-
-            };
-            
-            Button guitarButtonA = guitarLayout.FindViewById<Button>(Resource.Id.buttonA);
-            guitarButtonA.Click += (sender, e) =>
-            {
-                drawingView.Frequency = 110.00f;
-                drawingView.minFrequency = 110.00f - 40;
-                drawingView.maxFrequency = 110.00f + 40;
-                drawingView.Note = "A";
-
-            };
-            
-            Button guitarButtonD = guitarLayout.FindViewById<Button>(Resource.Id.buttonD);
-            guitarButtonD.Click += (sender, e) =>
-            {
-                drawingView.Frequency = 147.83f;
-                drawingView.minFrequency = 147.83f - 40;
-                drawingView.maxFrequency = 147.83f + 40;
-                drawingView.Note = "D";
-
-            };
-            
-            Button guitarButtonG = guitarLayout.FindViewById<Button>(Resource.Id.buttonG);
-            guitarButtonG.Click += (sender, e) =>
-            {
-                drawingView.Frequency = 196.00f;               
-                drawingView.minFrequency = 196.00f - 40;
-                drawingView.maxFrequency = 196.00f + 40;
-                drawingView.Note = "G";
-
-            };
-            
-            Button guitarButtonB = guitarLayout.FindViewById<Button>(Resource.Id.buttonB);
-            guitarButtonB.Click += (sender, e) =>
-            {
-                drawingView.Frequency = 246.96f;
-                drawingView.minFrequency = 246.96f - 40;
-                drawingView.maxFrequency = 246.96f + 40;
-                drawingView.Note = "B";
-
-            };
-            
-            Button guitarButtonE2 = guitarLayout.FindViewById<Button>(Resource.Id.buttonE2);
-            guitarButtonE2.Click += (sender, e) =>
-            {
-                drawingView.Frequency = 329.63f;
-                drawingView.minFrequency = 329.63f - 40;
-                drawingView.maxFrequency = 329.63f + 40;
-                drawingView.Note = "E";
-
+                drawingView.Frequency = frequency;
+                drawingView.minFrequency = frequency - 40;
+                drawingView.maxFrequency = frequency + 40;
+                drawingView.Note = note;
             };
         }
-        
+
+        private void SetupGuitarLayout(View guitarLayout)
+        {
+            SetupLayout(guitarLayout, guitarLayout.FindViewById<Button>(Resource.Id.buttonE), 82.41f, "E");
+            SetupLayout(guitarLayout, guitarLayout.FindViewById<Button>(Resource.Id.buttonA), 110.00f, "A");
+            SetupLayout(guitarLayout, guitarLayout.FindViewById<Button>(Resource.Id.buttonD), 147.83f, "D");
+            SetupLayout(guitarLayout, guitarLayout.FindViewById<Button>(Resource.Id.buttonG), 196.00f, "G");
+            SetupLayout(guitarLayout, guitarLayout.FindViewById<Button>(Resource.Id.buttonB), 246.96f, "B");
+            SetupLayout(guitarLayout, guitarLayout.FindViewById<Button>(Resource.Id.buttonE2), 329.63f, "E");
+        }
+
+        private void SetupViolinLayout(View violinLayout)
+        {
+            SetupLayout(violinLayout, violinLayout.FindViewById<Button>(Resource.Id.buttonE), 329.63f, "E");
+            SetupLayout(violinLayout, violinLayout.FindViewById<Button>(Resource.Id.buttonA), 440.00f, "A");
+            SetupLayout(violinLayout, violinLayout.FindViewById<Button>(Resource.Id.buttonD), 293.66f, "D");
+            SetupLayout(violinLayout, violinLayout.FindViewById<Button>(Resource.Id.buttonG), 196.00f, "G");
+        }
+
         private void instrumentSpinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -151,6 +115,7 @@ namespace Tunerv1._0
                     mainView.RemoveViewAt(stringButtonsLayoutIndex);
 
                     mainView.AddView(violinLayout, stringButtonsLayoutIndex);
+                    SetupViolinLayout(violinLayout);
                     break;
             }
         }
@@ -242,7 +207,7 @@ namespace Tunerv1._0
                  }
              }
          }
-         private void SoundCapturer_FrequencyDetected(object sender, FrequencyDetectedEventArgs e)
+        private void SoundCapturer_FrequencyDetected(object sender, FrequencyDetectedEventArgs e)
          {
              RunOnUiThread(() =>
              {
@@ -452,3 +417,108 @@ namespace Tunerv1._0
 //         
 //     }
 // }
+/*        private void SetupGuitarLayout(View guitarLayout)
+        {
+            Button guitarButtonE = guitarLayout.FindViewById<Button>(Resource.Id.buttonE);
+            guitarButtonE.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 82.41f;
+                drawingView.minFrequency = 82.41f - 40;
+                drawingView.maxFrequency = 82.41f + 40;
+                drawingView.Note = "E";
+
+            };
+            
+            Button guitarButtonA = guitarLayout.FindViewById<Button>(Resource.Id.buttonA);
+            guitarButtonA.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 110.00f;
+                drawingView.minFrequency = 110.00f - 40;
+                drawingView.maxFrequency = 110.00f + 40;
+                drawingView.Note = "A";
+
+            };
+            
+            Button guitarButtonD = guitarLayout.FindViewById<Button>(Resource.Id.buttonD);
+            guitarButtonD.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 147.83f;
+                drawingView.minFrequency = 147.83f - 40;
+                drawingView.maxFrequency = 147.83f + 40;
+                drawingView.Note = "D";
+
+            };
+            
+            Button guitarButtonG = guitarLayout.FindViewById<Button>(Resource.Id.buttonG);
+            guitarButtonG.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 196.00f;               
+                drawingView.minFrequency = 196.00f - 40;
+                drawingView.maxFrequency = 196.00f + 40;
+                drawingView.Note = "G";
+
+            };
+            
+            Button guitarButtonB = guitarLayout.FindViewById<Button>(Resource.Id.buttonB);
+            guitarButtonB.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 246.96f;
+                drawingView.minFrequency = 246.96f - 40;
+                drawingView.maxFrequency = 246.96f + 40;
+                drawingView.Note = "B";
+
+            };
+            
+            Button guitarButtonE2 = guitarLayout.FindViewById<Button>(Resource.Id.buttonE2);
+            guitarButtonE2.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 329.63f;
+                drawingView.minFrequency = 329.63f - 40;
+                drawingView.maxFrequency = 329.63f + 40;
+                drawingView.Note = "E";
+
+            };
+        }
+        private void SetupViolinLayout(View violinLayout)
+        {
+            Button violinButtonE = violinLayout.FindViewById<Button>(Resource.Id.buttonE);
+            violinButtonE.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 329.63f;
+                drawingView.minFrequency = 82.41f - 40;
+                drawingView.maxFrequency = 82.41f + 40;
+                drawingView.Note = "E";
+
+            };
+            
+            Button violinButtonA = violinLayout.FindViewById<Button>(Resource.Id.buttonA);
+            violinButtonA.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 440.00f;
+                drawingView.minFrequency = 440.00f - 40;
+                drawingView.maxFrequency = 440.00f + 40;
+                drawingView.Note = "A";
+
+            };
+            
+            Button violinButtonD = violinLayout.FindViewById<Button>(Resource.Id.buttonD);
+            violinButtonD.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 293.66f;
+                drawingView.minFrequency = 293.66f - 40;
+                drawingView.maxFrequency = 293.66f + 40;
+                drawingView.Note = "D";
+
+            };
+            
+            Button violinButtonG = violinLayout.FindViewById<Button>(Resource.Id.buttonG);
+            violinButtonG.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 196.00f;               
+                drawingView.minFrequency = 196.00f - 40;
+                drawingView.maxFrequency = 196.00f + 40;
+                drawingView.Note = "G";
+
+            };
+        }
+        */
