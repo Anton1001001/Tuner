@@ -5,5 +5,23 @@
     <string-array name="instruments_array">
         <item>Guitar</item>
         <item>Violin</item>
+        <item>Bas-guitar</item>
+    </string-array>
+    
+    <string-array name="guitar_tuning_array">
+        <item>Standard</item>
+        <item>Drop D</item>
+        <item>Dsus 4</item>
+        <item>Asus2</item>
+        <item>Asus4</item>
+        <item>Drop C</item>
+        <item>На пол тона ниже</item>
+        <item>Drop C#</item>
+        <item>На тон ниже</item>
+        <item>Open D</item>
+    </string-array>
+
+    <string-array name="violin_tuning_array">
+        <item>Standart</item>
     </string-array>
 </resources>

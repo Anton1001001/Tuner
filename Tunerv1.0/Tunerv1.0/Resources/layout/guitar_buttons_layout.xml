@@ -12,34 +12,19 @@
             android:layout_alignParentStart="true">
 
         <Button
-                android:text="D"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_state"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/buttonD"/>
+               
+                style="@style/ButtonStyle"
+                android:id="@+id/button3"/>
 
         <Button
-                android:text="A"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_state"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/buttonA"/>
+                
+                style="@style/ButtonStyle"
+                android:id="@+id/button2"/>
 
         <Button
-                android:text="E"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_state"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/buttonE"/>
+                
+                style="@style/ButtonStyle"
+                android:id="@+id/button1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -49,34 +34,19 @@
             android:layout_alignParentEnd="true">
 
         <Button
-                android:text="G"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_state"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/buttonG"/>
+                
+                style="@style/ButtonStyle"
+                android:id="@+id/button4"/>
 
         <Button
-                android:text="B"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_state"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/buttonB"/>
+               
+                style="@style/ButtonStyle"
+                android:id="@+id/button5"/>
 
         <Button
-                android:text="E"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_state"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/buttonE2"/>
+                
+                style="@style/ButtonStyle"
+                android:id="@+id/button6"/>
     </LinearLayout>
 
 
