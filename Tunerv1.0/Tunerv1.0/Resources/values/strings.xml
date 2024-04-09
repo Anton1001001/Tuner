@@ -38,4 +38,9 @@
         <item>На пол тона выше</item>
         <item>На тон выше</item>
     </string-array>
+
+    <string-array name="cello_tuning_array">
+        <item>Standard</item>
+        <item>Золтан Кодай</item>
+    </string-array>
 </resources>

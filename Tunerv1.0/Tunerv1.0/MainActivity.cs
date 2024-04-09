@@ -85,6 +85,8 @@ namespace Tunerv1._0
 
         private View guitarLayout;
         private View basLayout;
+        private View celloLayout;
+        private View violinLayout;
         private void instrumentSpinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -108,13 +110,12 @@ namespace Tunerv1._0
                     break;
                 
                 case "Violin":
-                    View violinLayout = LayoutInflater.Inflate(Resource.Layout.violin_buttons_layout, mainView, false);
-                    RelativeLayout violinButtonsLayout = FindViewById<RelativeLayout>(Resource.Id.guitarButtonsLayout);
+                    violinLayout = LayoutInflater.Inflate(Resource.Layout.violin_buttons_layout, mainView, false);
+                    RelativeLayout violinButtonsLayout = FindViewById<RelativeLayout>(Resource.Id.violinButtonsLayout);
                     
                     mainView.RemoveViewAt(stringButtonsLayoutIndex);
 
                     mainView.AddView(violinLayout, stringButtonsLayoutIndex);
-                    SetupInstrumentLayout(violinLayout, new float[] { 329.63f, 440.00f, 293.66f, 196.00f }, new string[] { "E", "A", "D", "G" });
                     
                     Spinner tuningViolinSpinner = FindViewById<Spinner> (Resource.Id.tuningSpinner);
             
@@ -139,9 +140,40 @@ namespace Tunerv1._0
                     instrumentsBasAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
                     tuningBasSpinner.Adapter = instrumentsBasAdapter;
                     break;
+                
+                case "Cello":
+                    celloLayout = LayoutInflater.Inflate(Resource.Layout.cello_buttons_layout, mainView, false);
+                    RelativeLayout celloButtonsLayout = FindViewById<RelativeLayout>(Resource.Id.celloButtonsLayout);
+                    
+                    mainView.RemoveViewAt(stringButtonsLayoutIndex);
+
+                    mainView.AddView(celloLayout, stringButtonsLayoutIndex);
+            
+                    Spinner tuningCelloSpinner = FindViewById<Spinner>(Resource.Id.tuningSpinner);
+                    tuningCelloSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(tuningCelloSpinner_ItemSelected);
+                    var instrumentsCelloAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.cello_tuning_array, Android.Resource.Layout.SimpleSpinnerItem);
+                    instrumentsCelloAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+                    tuningCelloSpinner.Adapter = instrumentsCelloAdapter;
+                    break;
             }
         }
 
+        private void tuningCelloSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            string tuning = (string)spinner.GetItemAtPosition(e.Position);
+
+
+            switch (tuning)
+            {
+                case"Standard":
+                    SetupInstrumentLayout(celloLayout, new float[] { 65.41f, 98.00f, 147.83f, 220.00f }, new string[] { "C", "G", "D", "A"});
+                    break;
+                case "Золтан Кодай":
+                    SetupInstrumentLayout(celloLayout, new float[] { 61.74f, 92.50f, 147.83f, 220.00f }, new string[] { "B", "F#", "D", "A"});
+                    break;
+            }
+        }
         private void tuningBasSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -215,10 +247,9 @@ namespace Tunerv1._0
                     break;
             }
         }        
-        
         private void tuningViolinSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            
+            SetupInstrumentLayout(violinLayout, new float[] { 329.63f, 440.00f, 293.66f, 196.00f }, new string[] { "E", "A", "D", "G" });
         }
         
         
