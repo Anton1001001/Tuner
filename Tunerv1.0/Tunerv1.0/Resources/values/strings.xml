@@ -6,6 +6,9 @@
         <item>Guitar</item>
         <item>Violin</item>
         <item>Bas-guitar</item>
+        <item>Cello</item>
+        <item>Ukulele</item>
+        <item>Guitar 7</item>
     </string-array>
     
     <string-array name="guitar_tuning_array">
@@ -22,6 +25,17 @@
     </string-array>
 
     <string-array name="violin_tuning_array">
-        <item>Standart</item>
+        <item>Standard</item>
+    </string-array>
+    
+    <string-array name="bas_tuning_array">
+        <item>Standard</item>
+        <item>На пол тона ниже</item>
+        <item>На тон ниже</item>
+        <item>Drop D</item>
+        <item>Drop C</item>
+        <item>Drop C#</item>
+        <item>На пол тона выше</item>
+        <item>На тон выше</item>
     </string-array>
 </resources>

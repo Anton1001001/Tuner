@@ -84,6 +84,7 @@ namespace Tunerv1._0
         }
 
         private View guitarLayout;
+        private View basLayout;
         private void instrumentSpinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -98,11 +99,9 @@ namespace Tunerv1._0
                     mainView.RemoveViewAt(stringButtonsLayoutIndex);
 
                     mainView.AddView(guitarLayout, stringButtonsLayoutIndex);
-                    
-                    //SetupInstrumentLayout(guitarLayout, new float[] { 82.41f, 110.00f, 147.83f, 196.00f, 246.96f, 329.63f }, new string[] { "E", "A", "D", "G", "B", "E" });
             
                     Spinner tuningGuitarSpinner = FindViewById<Spinner>(Resource.Id.tuningSpinner);
-                    tuningGuitarSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(tuningGuitarSpinner_ItemSelected); // Вот здесь нужно установить обработчик
+                    tuningGuitarSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(tuningGuitarSpinner_ItemSelected);
                     var instrumentsGuitarAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.guitar_tuning_array, Android.Resource.Layout.SimpleSpinnerItem);
                     instrumentsGuitarAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
                     tuningGuitarSpinner.Adapter = instrumentsGuitarAdapter;
@@ -126,16 +125,61 @@ namespace Tunerv1._0
                     tuningViolinSpinner.Adapter = instrumentsViolinAdapter;
                     
                     break;
+                case "Bas-guitar":
+                    basLayout = LayoutInflater.Inflate(Resource.Layout.bas_buttons_layout, mainView, false);
+                    RelativeLayout basButtonsLayout = FindViewById<RelativeLayout>(Resource.Id.basButtonsLayout);
+                    
+                    mainView.RemoveViewAt(stringButtonsLayoutIndex);
+
+                    mainView.AddView(basLayout, stringButtonsLayoutIndex);
+            
+                    Spinner tuningBasSpinner = FindViewById<Spinner>(Resource.Id.tuningSpinner);
+                    tuningBasSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(tuningBasSpinner_ItemSelected);
+                    var instrumentsBasAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.bas_tuning_array, Android.Resource.Layout.SimpleSpinnerItem);
+                    instrumentsBasAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+                    tuningBasSpinner.Adapter = instrumentsBasAdapter;
+                    break;
             }
         }
 
-
-        private void tuningGuitarSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void tuningBasSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             string tuning = (string)spinner.GetItemAtPosition(e.Position);
 
-            //View guitarLayout = LayoutInflater.Inflate(Resource.Layout.guitar_buttons_layout, mainView, false);
+            
+            switch (tuning)
+            {
+                case"Standard":
+                    SetupInstrumentLayout(basLayout, new float[] { 41.21f, 55.00f, 73.91f, 98.00f }, new string[] { "E", "A", "D", "G"});
+                    break;
+                case"На пол тона ниже":
+                    SetupInstrumentLayout(basLayout, new float[] { 38.88f, 51.90f, 63.30f, 92.50f }, new string[] { "D#", "G#", "C#", "F#"});
+                    break;
+                case"На тон ниже":
+                    SetupInstrumentLayout(basLayout, new float[] { 36.95f, 49.00f, 65.41f, 87.31f }, new string[] { "D", "G", "C", "F"});
+                    break;
+                case"Drop D":
+                    SetupInstrumentLayout(basLayout, new float[] { 36.95f, 55.00f, 73.91f, 98.00f }, new string[] { "D", "A", "D", "G"});
+                    break;
+                case"Drop C":
+                    SetupInstrumentLayout(basLayout, new float[] { 32.70f, 49.00f, 65.41f, 87.31f }, new string[] { "C", "G", "C", "F"});
+                    break;
+                case"Drop C#":
+                    SetupInstrumentLayout(basLayout, new float[] { 34.65f, 51.90f, 69.30f, 92.50f }, new string[] { "C#", "G#", "C#", "F#"});
+                    break;
+                case"На пол тона выше":
+                    SetupInstrumentLayout(basLayout, new float[] { 43.65f, 58.26f, 77.78f, 103.80f }, new string[] { "F", "A#", "D#", "G#"});
+                    break;
+                case"На тон выше":
+                    SetupInstrumentLayout(basLayout, new float[] { 46.25f, 61.74f, 82.41f, 110.00f }, new string[] { "F#", "B", "E", "A"});
+                    break;
+            }
+        }
+        private void tuningGuitarSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            string tuning = (string)spinner.GetItemAtPosition(e.Position);
 
             switch (tuning)
             {
@@ -176,6 +220,8 @@ namespace Tunerv1._0
         {
             
         }
+        
+        
         
         public class DrawingView : View
          {

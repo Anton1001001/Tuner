@@ -235,3 +235,4 @@ C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_Con
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_GenerateJavaStubs.stamp
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\res\layout\bas_buttons_layout.xml
