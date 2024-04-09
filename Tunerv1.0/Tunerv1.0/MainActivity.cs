@@ -24,6 +24,8 @@ namespace Tunerv1._0
         private int stringButtonsLayoutIndex;
         private ViewGroup mainView;
 
+        private DrawingView drawingView;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -45,7 +47,7 @@ namespace Tunerv1._0
             
             FrameLayout drawingContainer = FindViewById<FrameLayout>(Resource.Id.drawingContainer);
             
-            var drawingView = new DrawingView(this);
+            drawingView = new DrawingView(this);
             drawingContainer.AddView(drawingView);
             
             _soundCapturer = new SoundCapturer();
@@ -58,6 +60,59 @@ namespace Tunerv1._0
             
             _soundCapturer.StartCapture();
    
+        }
+        
+        private void SetupGuitarLayout(View guitarLayout)
+        {
+            //var drawingView = new DrawingView(this);
+            
+            Button guitarButtonE = guitarLayout.FindViewById<Button>(Resource.Id.buttonE);
+            guitarButtonE.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 82.41f;
+                drawingView.Note = "E";
+
+            };
+            
+            Button guitarButtonA = guitarLayout.FindViewById<Button>(Resource.Id.buttonA);
+            guitarButtonA.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 110.00f;
+                drawingView.Note = "A";
+
+            };
+            
+            Button guitarButtonD = guitarLayout.FindViewById<Button>(Resource.Id.buttonD);
+            guitarButtonD.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 147.83f;
+                drawingView.Note = "D";
+
+            };
+            
+            Button guitarButtonG = guitarLayout.FindViewById<Button>(Resource.Id.buttonG);
+            guitarButtonG.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 196.00f;
+                drawingView.Note = "G";
+
+            };
+            
+            Button guitarButtonB = guitarLayout.FindViewById<Button>(Resource.Id.buttonB);
+            guitarButtonB.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 246.96f;
+                drawingView.Note = "B";
+
+            };
+            
+            Button guitarButtonE2 = guitarLayout.FindViewById<Button>(Resource.Id.buttonE2);
+            guitarButtonE2.Click += (sender, e) =>
+            {
+                drawingView.Frequency = 329.63f;
+                drawingView.Note = "E";
+
+            };
         }
         
         private void instrumentSpinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
@@ -74,6 +129,8 @@ namespace Tunerv1._0
                     mainView.RemoveViewAt(stringButtonsLayoutIndex);
 
                     mainView.AddView(guitarLayout, stringButtonsLayoutIndex);
+                    
+                    SetupGuitarLayout(guitarLayout);
                     break;
                 case "Violin":
                     View violinLayout = LayoutInflater.Inflate(Resource.Layout.violin_buttons_layout, mainView, false);
@@ -89,7 +146,8 @@ namespace Tunerv1._0
         public class DrawingView : View
          {
              private Paint _paint;
-             private float _frequency = 110.63f; // Пример частоты
+             public float Frequency = 110.06f; // Пример частоты
+             public string Note = "A"; // Пример частоты
              private int _circleRadius = 10; // Радиус кружка
              private Paint _circle;
              float minFrequency = 329.63f - 40;
@@ -149,10 +207,10 @@ namespace Tunerv1._0
                  
                  canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
                  var frequencyText = "Frequency: " + parsedFrequency.ToString("F2");
-                 _paint.TextSize = 100;
+                 _paint.TextSize = 50;
                  canvas.DrawText(frequencyText, 0, _paint.TextSize, _paint);
-                 var note = "note" + _frequency.ToString("F2"); 
-                 canvas.DrawText(note, 100, _paint.TextSize+100, _paint);
+                 var note = "Note " + Note + " Frequency " + Frequency.ToString("F2"); 
+                 canvas.DrawText(note, 0, _paint.TextSize+100, _paint);
              }
          }
 
