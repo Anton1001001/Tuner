@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Android.Media;
-using Android.Util;
+ using Android.Systems;
+ using Android.Util;
 
 namespace Tunerv1._0
 {
@@ -151,6 +152,8 @@ namespace Tunerv1._0
                 int highBorder = 20000;
                 int step = 10;
                 int[] freqCount = new int[(highBorder - lowBorder) / step];
+                bool isFading = false;
+                double fadingFreq = 0;
                 while (_isCapturing)
                 {
                     
@@ -180,15 +183,24 @@ namespace Tunerv1._0
                         count += freqCount[rangeIdx];
                         count += rangeIdx > 0 ? freqCount[rangeIdx - 1] : 0;
                         count += rangeIdx > freqCount.Length ? freqCount[rangeIdx - 1] : 0;
-
+                        
                         if (count >= 6)
                         {
-                            int halfRangeIdx = (int)((freq / 2 - lowBorder) / step);
-                            if (!(freq >= 130 && freq <= 160 && freqCount[halfRangeIdx] >= 3))
+                            if (freq >= 65 && freq <= 80)
                             {
-                                OnFrequencyDetected(new FrequencyDetectedEventArgs(freq));
+                                isFading = true;
+                                fadingFreq = freq;
                             }
-                            
+                            else if (isFading && freq >= fadingFreq * 2 - 1 && freq <= fadingFreq * 2 + 1)
+                            {
+                                freq = fadingFreq;
+                            }
+                            else
+                            {
+                                isFading = false;
+                            }
+                            OnFrequencyDetected(new FrequencyDetectedEventArgs(freq));
+
                         }
                         
                         prevFreq.Enqueue(freq);
