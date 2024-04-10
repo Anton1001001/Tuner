@@ -145,7 +145,8 @@ namespace Tunerv1._0
         {
             try
             {
-                Queue<double> inputFreq = new Queue<double>();
+                Queue<double> newFreq = new Queue<double>();
+                Queue<double> prevFreq = new Queue<double>();
                 int lowBorder = 20;
                 int highBorder = 20000;
                 int step = 10;
@@ -168,12 +169,12 @@ namespace Tunerv1._0
                         continue;
                     }
                     
-                    inputFreq.Enqueue(newSound.Frequency);
+                    newFreq.Enqueue(newSound.Frequency);
                     freqCount[(int)((newSound.Frequency - lowBorder) / step)]++;
                     
-                    if (inputFreq.Count() >= 10)
+                    if (newFreq.Count() >= 5)
                     {
-                        double freq = inputFreq.Dequeue();
+                        double freq = newFreq.Dequeue();
                         int rangeIdx = (int)((freq - lowBorder) / step);
                         int count = 0;
                         count += freqCount[rangeIdx];
@@ -184,8 +185,16 @@ namespace Tunerv1._0
                         {
                             OnFrequencyDetected(new FrequencyDetectedEventArgs(freq));
                         }
+                        
+                        prevFreq.Enqueue(freq);
+                        
+                        if (prevFreq.Count() > 5)
+                        {
+                            double removedFreq = prevFreq.Dequeue();
+                            rangeIdx = (int)((removedFreq - lowBorder) / step);
+                            freqCount[rangeIdx]--;
+                        }
 
-                        freqCount[rangeIdx]--;
                     }
                 }
             }
