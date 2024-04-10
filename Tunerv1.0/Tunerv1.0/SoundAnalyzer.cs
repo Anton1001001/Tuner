@@ -92,8 +92,7 @@ namespace Tunerv1._0
                     maxArg = i;
                 i++;
             }
-
-            maxArg++;
+            
             if (maxArg == _nsdf.Length - 1)
             {
                 return _fs / FitStationaryPntPoly2(
