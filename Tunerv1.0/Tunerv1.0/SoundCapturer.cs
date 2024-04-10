@@ -183,7 +183,12 @@ namespace Tunerv1._0
 
                         if (count >= 6)
                         {
-                            OnFrequencyDetected(new FrequencyDetectedEventArgs(freq));
+                            int halfRangeIdx = (int)((freq / 2 - lowBorder) / step);
+                            if (!(freq >= 130 && freq <= 160 && freqCount[halfRangeIdx] >= 3))
+                            {
+                                OnFrequencyDetected(new FrequencyDetectedEventArgs(freq));
+                            }
+                            
                         }
                         
                         prevFreq.Enqueue(freq);
