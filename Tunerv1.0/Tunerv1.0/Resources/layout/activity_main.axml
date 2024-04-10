@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			  xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
-			  xmlns:app="http://schemas.android.com/apk/res-auto"
-			  xmlns:tools="http://schemas.android.com/tools"
-			  android:orientation="vertical"
-			  android:layout_width="match_parent"
-			  android:layout_height="match_parent"
-			  android:prompt="@string/instrument_prompt"
-			  android:background="@color/dark">
+              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:prompt="@string/instrument_prompt"
+              android:background="@color/dark">
 
 	<!--<skia:SKCanvasView :Name="canvasView" PaintSurface="OnCanvasViewPaintSurface" android:layout_height="410dp"
-	                   android:layout_width="334dp"/>-->
-	
+				   android:layout_width="334dp"/>-->
+
 	<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="51dp">
@@ -45,29 +45,22 @@
 
 	</RelativeLayout>
 
+	<FrameLayout
+			android:id="@+id/drawingContainer"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:layout_marginTop="10dp"/>
+
 	<RelativeLayout
 			xmlns:android="http://schemas.android.com/apk/res/android"
 			android:orientation="horizontal"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="100dp"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp"
 			android:id="@+id/guitarButtonsLayout">
 	</RelativeLayout>
-
-	<RelativeLayout xmlns="http://xamarin.com/schemas/2014/forms"
-					xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-					xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
-					xmlns:tt="clr-namespace:TouchTracking"
-					x:Class="SkiaSharpFormsDemos.Paths.FingerPaintPage"
-					android:orientation="horizontal"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="100dp">
-	</RelativeLayout>
-
-	<FrameLayout
-			android:id="@+id/drawingContainer"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"/>
 
 </LinearLayout>

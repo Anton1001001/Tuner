@@ -1,5 +1,8 @@
 {http://xamarin.com/schemas/2014/forms}RelativeLayout;obj\Debug\110\res\layout\activity_main.xml
+Button;obj\Debug\110\res\layout\bas_buttons_layout.xml
+Button;obj\Debug\110\res\layout\cello_buttons_layout.xml
 Button;obj\Debug\110\res\layout\guitar_buttons_layout.xml
+Button;obj\Debug\110\res\layout\ukulele_buttons_layout.xml
 Button;obj\Debug\110\res\layout\violin_buttons_layout.xml
 color;obj\Debug\110\res\values\colors.xml
 color;obj\Debug\110\res\values\ic_launcher_background.xml
@@ -10,10 +13,16 @@ item;obj\Debug\110\res\drawable\button_state.xml
 item;obj\Debug\110\res\values\strings.xml
 item;obj\Debug\110\res\values\styles.xml
 LinearLayout;obj\Debug\110\res\layout\activity_main.xml
+LinearLayout;obj\Debug\110\res\layout\bas_buttons_layout.xml
+LinearLayout;obj\Debug\110\res\layout\cello_buttons_layout.xml
 LinearLayout;obj\Debug\110\res\layout\guitar_buttons_layout.xml
+LinearLayout;obj\Debug\110\res\layout\ukulele_buttons_layout.xml
 LinearLayout;obj\Debug\110\res\layout\violin_buttons_layout.xml
 RelativeLayout;obj\Debug\110\res\layout\activity_main.xml
+RelativeLayout;obj\Debug\110\res\layout\bas_buttons_layout.xml
+RelativeLayout;obj\Debug\110\res\layout\cello_buttons_layout.xml
 RelativeLayout;obj\Debug\110\res\layout\guitar_buttons_layout.xml
+RelativeLayout;obj\Debug\110\res\layout\ukulele_buttons_layout.xml
 RelativeLayout;obj\Debug\110\res\layout\violin_buttons_layout.xml
 resources;obj\Debug\110\res\values\colors.xml
 resources;obj\Debug\110\res\values\ic_launcher_background.xml
