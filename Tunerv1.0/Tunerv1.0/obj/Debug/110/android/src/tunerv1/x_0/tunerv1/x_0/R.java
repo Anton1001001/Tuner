@@ -43,7 +43,8 @@ public final class R {
     public static final int cello_tuning_array=0x7f030001;
     public static final int guitar_tuning_array=0x7f030002;
     public static final int instruments_array=0x7f030003;
-    public static final int violin_tuning_array=0x7f030004;
+    public static final int ukulele_tuning_array=0x7f030004;
+    public static final int violin_tuning_array=0x7f030005;
   }
   public static final class attr {
     /**
@@ -4764,15 +4765,16 @@ public final class R {
     public static final int transition_scene_layoutid_cache=0x7f0900ba;
     public static final int transition_transform=0x7f0900bb;
     public static final int tuningSpinner=0x7f0900bc;
-    public static final int uniform=0x7f0900bd;
-    public static final int unlabeled=0x7f0900be;
-    public static final int up=0x7f0900bf;
-    public static final int useLogo=0x7f0900c0;
-    public static final int view_offset_helper=0x7f0900c1;
-    public static final int violinButtonsLayout=0x7f0900c2;
-    public static final int visible=0x7f0900c3;
-    public static final int withText=0x7f0900c4;
-    public static final int wrap_content=0x7f0900c5;
+    public static final int ukuleleButtonsLayout=0x7f0900bd;
+    public static final int uniform=0x7f0900be;
+    public static final int unlabeled=0x7f0900bf;
+    public static final int up=0x7f0900c0;
+    public static final int useLogo=0x7f0900c1;
+    public static final int view_offset_helper=0x7f0900c2;
+    public static final int violinButtonsLayout=0x7f0900c3;
+    public static final int visible=0x7f0900c4;
+    public static final int withText=0x7f0900c5;
+    public static final int wrap_content=0x7f0900c6;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f0a0000;
@@ -4857,7 +4859,8 @@ public final class R {
     public static final int select_dialog_singlechoice_material=0x7f0c0038;
     public static final int string_button=0x7f0c0039;
     public static final int support_simple_spinner_dropdown_item=0x7f0c003a;
-    public static final int violin_buttons_layout=0x7f0c003b;
+    public static final int ukulele_buttons_layout=0x7f0c003b;
+    public static final int violin_buttons_layout=0x7f0c003c;
   }
   public static final class string {
     public static final int abc_action_bar_home_description=0x7f0d0000;

@@ -87,6 +87,7 @@ namespace Tunerv1._0
         private View basLayout;
         private View celloLayout;
         private View violinLayout;
+        private View ukuleleLayout;
         private void instrumentSpinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -155,9 +156,54 @@ namespace Tunerv1._0
                     instrumentsCelloAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
                     tuningCelloSpinner.Adapter = instrumentsCelloAdapter;
                     break;
+                case "Ukulele":
+                    ukuleleLayout = LayoutInflater.Inflate(Resource.Layout.ukulele_buttons_layout, mainView, false);
+                    RelativeLayout ukuleleButtonsLayout = FindViewById<RelativeLayout>(Resource.Id.ukuleleButtonsLayout);
+                    
+                    mainView.RemoveViewAt(stringButtonsLayoutIndex);
+
+                    mainView.AddView(ukuleleLayout, stringButtonsLayoutIndex);
+            
+                    Spinner tuningUkuleleSpinner = FindViewById<Spinner>(Resource.Id.tuningSpinner);
+                    tuningUkuleleSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(tuningUkuleleSpinner_ItemSelected);
+                    var instrumentsUkuleleAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.ukulele_tuning_array, Android.Resource.Layout.SimpleSpinnerItem);
+                    instrumentsUkuleleAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+                    tuningUkuleleSpinner.Adapter = instrumentsUkuleleAdapter;
+                    break;
             }
         }
 
+
+        private void tuningUkuleleSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            string tuning = (string)spinner.GetItemAtPosition(e.Position);
+            
+            switch (tuning)
+            {
+                case "Standard":
+                    SetupInstrumentLayout(ukuleleLayout, new float[] { 392.00f, 261.63f, 329.63f, 440.00f }, new string[] { "G", "C", "E", "A"});
+                    break;
+                case "Строй D сопрано":
+                    SetupInstrumentLayout(ukuleleLayout, new float[] { 440.00f, 293.33f, 369.99f, 493.88f }, new string[] { "A", "D", "F#", "B"});
+                    break;
+                case "Low G":
+                    SetupInstrumentLayout(ukuleleLayout, new float[] { 196.00f, 261.63f, 329.63f, 440.00f }, new string[] { "G", "C", "E", "A"});
+                    break;
+                case "Low A":
+                    SetupInstrumentLayout(ukuleleLayout, new float[] { 220.00f, 293.33f, 369.99f, 493.88f }, new string[] { "A", "D", "F#", "B"});
+                    break;
+                case "Slack key":
+                    SetupInstrumentLayout(ukuleleLayout, new float[] { 392.00f, 261.63f, 329.63f, 392.00f }, new string[] { "G", "C", "E", "G"});
+                    break;
+                case "Строй B (-1)":
+                    SetupInstrumentLayout(ukuleleLayout, new float[] { 369.99f, 246.96f, 311.13f, 415.00f }, new string[] { "F#", "B", "D#", "G#"});
+                    break;
+                case "Строй C# (+1)":
+                    SetupInstrumentLayout(ukuleleLayout, new float[] { 415.30f, 277.18f, 349.23f, 466.16f }, new string[] { "G#", "C#4", "F4", "A#4"});
+                    break;
+            }
+        }
         private void tuningCelloSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -319,7 +365,7 @@ namespace Tunerv1._0
                  canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
                  
                  var lineX = screenWidth / 2;
-                 canvas.DrawLine(lineX, 0, lineX, screenHeight, _paint);
+                 canvas.DrawLine(lineX, 170, lineX, screenHeight, _paint);
                  
                  var frequencyText = "Frequency: " + parsedFrequency.ToString("F2");
                  _paint.TextSize = 50;

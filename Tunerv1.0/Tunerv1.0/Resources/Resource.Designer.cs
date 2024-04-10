@@ -147,7 +147,10 @@ namespace Tunerv1._0
 			public const int instruments_array = 2130903043;
 			
 			// aapt resource value: 0x7F030004
-			public const int violin_tuning_array = 2130903044;
+			public const int ukulele_tuning_array = 2130903044;
+			
+			// aapt resource value: 0x7F030005
+			public const int violin_tuning_array = 2130903045;
 			
 			static Array()
 			{
@@ -3630,31 +3633,34 @@ namespace Tunerv1._0
 			public const int tuningSpinner = 2131296444;
 			
 			// aapt resource value: 0x7F0900BD
-			public const int uniform = 2131296445;
+			public const int ukuleleButtonsLayout = 2131296445;
 			
 			// aapt resource value: 0x7F0900BE
-			public const int unlabeled = 2131296446;
+			public const int uniform = 2131296446;
 			
 			// aapt resource value: 0x7F0900BF
-			public const int up = 2131296447;
+			public const int unlabeled = 2131296447;
 			
 			// aapt resource value: 0x7F0900C0
-			public const int useLogo = 2131296448;
+			public const int up = 2131296448;
 			
 			// aapt resource value: 0x7F0900C1
-			public const int view_offset_helper = 2131296449;
+			public const int useLogo = 2131296449;
 			
 			// aapt resource value: 0x7F0900C2
-			public const int violinButtonsLayout = 2131296450;
+			public const int view_offset_helper = 2131296450;
 			
 			// aapt resource value: 0x7F0900C3
-			public const int visible = 2131296451;
+			public const int violinButtonsLayout = 2131296451;
 			
 			// aapt resource value: 0x7F0900C4
-			public const int withText = 2131296452;
+			public const int visible = 2131296452;
 			
 			// aapt resource value: 0x7F0900C5
-			public const int wrap_content = 2131296453;
+			public const int withText = 2131296453;
+			
+			// aapt resource value: 0x7F0900C6
+			public const int wrap_content = 2131296454;
 			
 			static Id()
 			{
@@ -3930,7 +3936,10 @@ namespace Tunerv1._0
 			public const int support_simple_spinner_dropdown_item = 2131492922;
 			
 			// aapt resource value: 0x7F0C003B
-			public const int violin_buttons_layout = 2131492923;
+			public const int ukulele_buttons_layout = 2131492923;
+			
+			// aapt resource value: 0x7F0C003C
+			public const int violin_buttons_layout = 2131492924;
 			
 			static Layout()
 			{

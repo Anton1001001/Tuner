@@ -83,6 +83,10 @@
         </AndroidResource>
         <AndroidResource Include="Resources\layout\guitar_buttons_layout.xml" />
         <AndroidResource Include="Resources\layout\string_button.xml" />
+        <AndroidResource Include="Resources\layout\ukulele_buttons_layout.xml">
+          <SubType>Designer</SubType>
+          <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+        </AndroidResource>
         <AndroidResource Include="Resources\layout\violin_buttons_layout.xml" />
         <AndroidResource Include="Resources\values\colors.xml" />
         <AndroidResource Include="Resources\values\ic_launcher_background.xml" />

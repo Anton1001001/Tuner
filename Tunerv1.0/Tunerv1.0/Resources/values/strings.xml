@@ -43,4 +43,14 @@
         <item>Standard</item>
         <item>Золтан Кодай</item>
     </string-array>
+    
+    <string-array name="ukulele_tuning_array">
+        <item>Standard</item>
+        <item>Строй D сопрано</item>
+        <item>Low G</item>
+        <item>Low A</item>
+        <item>Slack key</item>
+        <item>Строй B (-1)</item>
+        <item>Строй C# (+1)</item>
+    </string-array>
 </resources>
