@@ -140,19 +140,19 @@ namespace Tunerv1._0
             switch (tuning)
             {
                 case"Standard":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 82.41f, 110.00f, 147.83f, 196.00f, 246.96f, 329.63f }, new string[] { "E", "A", "D", "G", "B", "E" });
+                    SetupInstrumentLayout(guitarLayout, new float[] { 82.41f, 110.00f, 146.83f, 196.00f, 246.96f, 329.63f }, new string[] { "E", "A", "D", "G", "B", "E" });
                     break;
                 case"Drop D":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 147.83f, 196.00f, 246.96f, 329.63f }, new string[] { "D", "A", "D", "G", "B", "E" });
+                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 146.83f, 196.00f, 246.96f, 329.63f }, new string[] { "D", "A", "D", "G", "B", "E" });
                     break;
                 case"Dsus 4":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 147.83f, 196.00f, 220.00f, 293.33f }, new string[] { "D", "A", "D", "G", "A", "D" });
+                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 146.83f, 196.00f, 220.00f, 293.33f }, new string[] { "D", "A", "D", "G", "A", "D" });
                     break;
                 case"Asus 2":
                     SetupInstrumentLayout(guitarLayout, new float[] { 82.41f, 110.00f, 123.48f, 164.81f, 220.00f, 329.63f }, new string[] { "E", "A", "B", "E", "A", "E" });
                     break;                
                 case"Asus 4":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 82.41f, 110.00f, 147.83f, 164.81f, 220.00f, 329.63f }, new string[] { "E", "A", "D", "E", "A", "E" });
+                    SetupInstrumentLayout(guitarLayout, new float[] { 82.41f, 110.00f, 146.83f, 164.81f, 220.00f, 329.63f }, new string[] { "E", "A", "D", "E", "A", "E" });
                     break;
                 case"Drop C":
                     SetupInstrumentLayout(guitarLayout, new float[] { 65.41f, 98.00f, 131.81f, 174.91f, 220.00f, 293.70f }, new string[] { "C", "G", "C", "F", "A", "D" });
@@ -167,7 +167,7 @@ namespace Tunerv1._0
                     SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 98.00f, 130.81f, 174.61f, 220.00f, 293.70f }, new string[] { "D", "G", "C", "F", "A", "D" });
                     break;
                 case"Open D":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 147.83f, 185.00f, 220.00f, 293.70f }, new string[] { "D", "A", "D", "F#", "A", "D" });
+                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 146.83f, 185.00f, 220.00f, 293.70f }, new string[] { "D", "A", "D", "F#", "A", "D" });
                     break;
             }
         }        

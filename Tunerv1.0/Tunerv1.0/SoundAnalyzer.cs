@@ -77,42 +77,42 @@ namespace Tunerv1._0
         {
             CalculateNsdFunction();
             var i = 0;
-            while (i < _audioBufferLength - 2 && _nsdf[i] >= 0.0) i++;
-            while (i < _audioBufferLength - 2 && _nsdf[i] <=  0.0) i++;
+            while (i < _audioBufferLength && _nsdf[i] >= 0.0) i++;
+            while (i < _audioBufferLength && _nsdf[i] <=  0.0) i++;
 
             int maxArg = i;
-            while (i < _audioBufferLength - 2 && _nsdf[i] >= 0.0) {
+            while (i < _audioBufferLength && _nsdf[i] >= 0.0) {
                 if (_nsdf[maxArg] < _nsdf[i] ) 
                     maxArg = i;
                 i++;
             }
 
-            while (i < _audioBufferLength - 2) {
+            while (i < _audioBufferLength) {
                 if (_nsdf[maxArg] < _nsdf[i] - 0.07)
                     maxArg = i;
                 i++;
             }
 
-            maxArg++;
-            if (maxArg == _nsdf.Length + 1)
+            
+            if (maxArg == _nsdf.Length - 1)
             {
                 return _fs / FitStationaryPntPoly2(
                     maxArg - 1, maxArg, maxArg, 
-                    _nsdf[maxArg - 1-1], _nsdf[maxArg-1], _nsdf[maxArg-1]
+                    _nsdf[maxArg - 1], _nsdf[maxArg], _nsdf[maxArg]
                 );
             }
             
-            if (maxArg == 1)
+            if (maxArg == 0)
             {
                 return _fs / FitStationaryPntPoly2(
-                    maxArg, maxArg, maxArg + 1, 
-                    _nsdf[maxArg - 1], _nsdf[maxArg - 1], _nsdf[maxArg + 1 - 1]
+                    maxArg, maxArg, 1, 
+                    _nsdf[maxArg], _nsdf[maxArg], _nsdf[1]
                 );
             }
 
             return _fs / FitStationaryPntPoly2(
                 maxArg - 1, maxArg, maxArg + 1, 
-                _nsdf[maxArg - 1 - 1], _nsdf[maxArg - 1], _nsdf[maxArg + 1 - 1]
+                _nsdf[maxArg - 1], _nsdf[maxArg], _nsdf[maxArg + 1]
             );
         }
     }

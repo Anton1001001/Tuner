@@ -1,28 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj": {}
+    "D:\\C#Projects\\TunerEngine\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj": {
+    "D:\\C#Projects\\TunerEngine\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj",
+        "projectUniqueName": "D:\\C#Projects\\TunerEngine\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj",
         "projectName": "Tunerv1._0",
-        "projectPath": "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj",
-        "packagesPath": "C:\\Users\\Melekit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Melekit\\source\\repos\\Tuner\\Tunerv1.0\\Tunerv1.0\\obj\\",
+        "projectPath": "D:\\C#Projects\\TunerEngine\\Tunerv1.0\\Tunerv1.0\\Tunerv1.0.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\C#Projects\\TunerEngine\\Tunerv1.0\\Tunerv1.0\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [
-          "C:\\Users\\Melekit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "monoandroid11.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
