@@ -3,6 +3,8 @@
               xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -46,7 +48,15 @@
 
 	</RelativeLayout>
 
-	
+
+	<FrameLayout
+			android:id="@+id/drawingContainer"
+			android:layout_width="match_parent"
+			android:layout_height="100dp"
+			android:layout_marginTop="10dp"/>
+
+
+
 
 	<RelativeLayout
 			xmlns:android="http://schemas.android.com/apk/res/android"
@@ -59,11 +69,5 @@
 			android:id="@+id/guitarButtonsLayout">
 	</RelativeLayout>
 	
-	<FrameLayout
-			android:id="@+id/drawingContainer"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="1"
-			android:layout_marginTop="10dp"/>
 
 </LinearLayout>

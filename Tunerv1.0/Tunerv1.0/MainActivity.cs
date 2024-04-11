@@ -67,8 +67,8 @@ namespace Tunerv1._0
             button.Click += (sender, e) =>
             {
                 drawingView.Frequency = frequency;
-                drawingView.minFrequency = frequency - 40;
-                drawingView.maxFrequency = frequency + 40;
+                drawingView.minFrequency = frequency - 50;
+                drawingView.maxFrequency = frequency + 50;
                 drawingView.Note = note;
             };
         }
@@ -342,7 +342,7 @@ namespace Tunerv1._0
              private Paint _paint;
              public float Frequency; // Пример частоты
              public string Note = ""; // Пример частоты
-             private int _circleRadius = 5; // Радиус кружка
+             private int _circleRadius = 20; // Радиус кружка
              private Paint _circle;
              public float minFrequency;
              public float maxFrequency;
@@ -357,7 +357,7 @@ namespace Tunerv1._0
              {
                  _paint = new Paint
                  {
-                     Color = Color.Rgb(155,45,48),
+                     Color = Color.Rgb(255,255,255),
                      StrokeWidth = 5,
                      AntiAlias = true
                  };
@@ -379,11 +379,28 @@ namespace Tunerv1._0
              }
 
 
+             public static Color InterpolateColor(double value)
+             {
+                 Color green = Color.Green;
+                 Color red = Color.Red;
+
+                 if (value > 0.5)
+                 {
+                     value = 1 - value;
+                 }
+                 
+                 value /= 0.5;
+
+                 int r = (int)(red.R * (1 - value) + green.R * value);
+                 int g = (int)(red.G * (1 - value) + green.G * value);
+                 int b = (int)(red.B * (1 - value) + green.B * value);
+        
+                 return Color.Rgb(r, g, b);
+             }
+             
              protected override void OnDraw(Canvas canvas)
              {
                  base.OnDraw(canvas);
-    
-                 
                  
                  var screenWidth = Width;
                  var screenHeight = Height;
@@ -394,21 +411,25 @@ namespace Tunerv1._0
                  }
 
                  var percentage = (parsedFrequency - minFrequency) / (maxFrequency - minFrequency);
-    
+
+                 _circle.Color = InterpolateColor(percentage);
                  var circleX = (int)(screenWidth * percentage);
-    
-                 
-
-
                  
                  var lineX = screenWidth / 2;
-                 canvas.DrawLine(lineX, 170, lineX, screenHeight, _paint);
+                 canvas.DrawLine(lineX, 60, lineX, screenHeight-50, _paint);
                  canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
+
+                 var borderLeft = "-50";
+                 var borderRight = "+50";
+                 
+                 _paint.TextSize = 40;
+                 canvas.DrawText(borderLeft, 20, _paint.TextSize, _paint);
+                 canvas.DrawText(borderRight, Width-10-70, _paint.TextSize, _paint);
+                 
                  var frequencyText = "Frequency: " + parsedFrequency.ToString("F2");
-                 _paint.TextSize = 50;
-                 canvas.DrawText(frequencyText, 0, _paint.TextSize, _paint);
+                 canvas.DrawText(frequencyText, Width/2 -140, _paint.TextSize, _paint);
                  var note = "Note " + Note + " Frequency " + Frequency.ToString("F2"); 
-                 canvas.DrawText(note, 0, _paint.TextSize+100, _paint);
+                 canvas.DrawText(note, Width/2 -200, screenHeight-5, _paint);
              }
 
          }
