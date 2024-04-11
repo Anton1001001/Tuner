@@ -286,7 +286,7 @@ namespace Tunerv1._0
                     SetupInstrumentLayout(guitarLayout, new float[] { 69.30f, 103.80f, 138.59f, 185.00f, 233.08f, 311.13f }, new string[] { "C#", "G#", "C#", "F#", "A#", "D#" });
                     break;
                 case"На тон ниже":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 98.00f, 130.81f, 174.61f, 220.00f, 293.70f }, new string[] { "D", "G", "C", "F", "A", "D" });
+                    SetupInstrumentLayout(guitarLayout, new float[] { 73.42f, 98.00f, 130.82f, 174.62f, 220.00f, 293.66f }, new string[] { "D", "G", "C", "F", "A", "D" });
                     break;
                 case"Open D":
                     SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 146.83f, 185.00f, 220.00f, 293.70f }, new string[] { "D", "A", "D", "F#", "A", "D" });
@@ -305,7 +305,7 @@ namespace Tunerv1._0
              private Paint _paint;
              public float Frequency; // Пример частоты
              public string Note = ""; // Пример частоты
-             private int _circleRadius = 20; // Радиус кружка
+             private int _circleRadius = 5; // Радиус кружка
              private Paint _circle;
              public float minFrequency;
              public float maxFrequency;
@@ -327,7 +327,7 @@ namespace Tunerv1._0
 
                  _circle = new Paint
                  {
-                     Color = Color.Rgb(0,0,255),
+                     Color = Color.Rgb(0,191,255),
                      AntiAlias = true
                  };
                  _timer = new System.Timers.Timer(30);
@@ -362,11 +362,11 @@ namespace Tunerv1._0
     
                  
 
-                 canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
+
                  
                  var lineX = screenWidth / 2;
                  canvas.DrawLine(lineX, 170, lineX, screenHeight, _paint);
-                 
+                 canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
                  var frequencyText = "Frequency: " + parsedFrequency.ToString("F2");
                  _paint.TextSize = 50;
                  canvas.DrawText(frequencyText, 0, _paint.TextSize, _paint);

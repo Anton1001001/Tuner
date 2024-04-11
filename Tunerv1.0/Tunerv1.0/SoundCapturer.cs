@@ -1,10 +1,9 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Android.Media;
- using Android.Systems;
- using Android.Util;
+using Android.Util;
 
 namespace Tunerv1._0
 {
@@ -146,14 +145,11 @@ namespace Tunerv1._0
         {
             try
             {
-                Queue<double> newFreq = new Queue<double>();
-                Queue<double> prevFreq = new Queue<double>();
+                Queue<double> inputFreq = new Queue<double>();
                 int lowBorder = 20;
                 int highBorder = 20000;
                 int step = 10;
                 int[] freqCount = new int[(highBorder - lowBorder) / step];
-                bool isFading = false;
-                double fadingFreq = 0;
                 while (_isCapturing)
                 {
                     
@@ -172,46 +168,24 @@ namespace Tunerv1._0
                         continue;
                     }
                     
-                    newFreq.Enqueue(newSound.Frequency);
+                    inputFreq.Enqueue(newSound.Frequency);
                     freqCount[(int)((newSound.Frequency - lowBorder) / step)]++;
                     
-                    if (newFreq.Count() >= 5)
+                    if (inputFreq.Count() >= 20)
                     {
-                        double freq = newFreq.Dequeue();
+                        double freq = inputFreq.Dequeue();
                         int rangeIdx = (int)((freq - lowBorder) / step);
                         int count = 0;
                         count += freqCount[rangeIdx];
                         count += rangeIdx > 0 ? freqCount[rangeIdx - 1] : 0;
                         count += rangeIdx > freqCount.Length ? freqCount[rangeIdx - 1] : 0;
-                        
-                        if (count >= 6)
+
+                        if (count >= 12)
                         {
-                            if (freq >= 65 && freq <= 80)
-                            {
-                                isFading = true;
-                                fadingFreq = freq;
-                            }
-                            else if (isFading && freq >= fadingFreq * 2 - 1 && freq <= fadingFreq * 2 + 1)
-                            {
-                                freq = fadingFreq;
-                            }
-                            else
-                            {
-                                isFading = false;
-                            }
                             OnFrequencyDetected(new FrequencyDetectedEventArgs(freq));
-
-                        }
-                        
-                        prevFreq.Enqueue(freq);
-                        
-                        if (prevFreq.Count() > 5)
-                        {
-                            double removedFreq = prevFreq.Dequeue();
-                            rangeIdx = (int)((removedFreq - lowBorder) / step);
-                            freqCount[rangeIdx]--;
                         }
 
+                        freqCount[rangeIdx]--;
                     }
                 }
             }
