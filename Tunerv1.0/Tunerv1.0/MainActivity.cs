@@ -88,6 +88,7 @@ namespace Tunerv1._0
         private View celloLayout;
         private View violinLayout;
         private View ukuleleLayout;
+        private View guitar7Layout;
         private void instrumentSpinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -170,10 +171,46 @@ namespace Tunerv1._0
                     instrumentsUkuleleAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
                     tuningUkuleleSpinner.Adapter = instrumentsUkuleleAdapter;
                     break;
+                case "Guitar 7":
+                    guitar7Layout = LayoutInflater.Inflate(Resource.Layout.guitar7_buttons_layout, mainView, false);
+                    RelativeLayout guitar7ButtonsLayout = FindViewById<RelativeLayout>(Resource.Id.guitar7ButtonsLayout);
+                    
+                    mainView.RemoveViewAt(stringButtonsLayoutIndex);
+
+                    mainView.AddView(guitar7Layout, stringButtonsLayoutIndex);
+            
+                    Spinner tuningGuitar7Spinner = FindViewById<Spinner>(Resource.Id.tuningSpinner);
+                    tuningGuitar7Spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(tuningGuitar7Spinner_ItemSelected);
+                    var instrumentsGuitar7Adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.guitar7_tuning_array, Android.Resource.Layout.SimpleSpinnerItem);
+                    instrumentsGuitar7Adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+                    tuningGuitar7Spinner.Adapter = instrumentsGuitar7Adapter;
+                    break;
             }
         }
 
 
+        private void tuningGuitar7Spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            string tuning = (string)spinner.GetItemAtPosition(e.Position);
+
+            switch (tuning)
+            {
+                case "Standard":
+                    SetupInstrumentLayout(guitar7Layout, new float[] { 61.74f, 82.41f, 110.00f, 147.83f, 196.00f, 246.96f, 329.63f }, new string[] { "B", "E", "A", "D", "G", "B", "E"});
+                    break;
+                case "Drop A":
+                    SetupInstrumentLayout(guitar7Layout, new float[] { 55.00f, 82.41f, 110.00f, 147.83f, 196.00f, 246.96f, 329.63f }, new string[] { "A", "E", "A", "D", "G", "B", "E"});
+                    break;
+                case "Русская гитара":
+                    SetupInstrumentLayout(guitar7Layout, new float[] { 73.91f, 98.00f, 123.48f, 147.83f, 196.00f, 246.96f, 293.33f }, new string[] { "D", "G", "B", "D", "G", "B", "D"});
+                    break;
+                case "Бразильская гитара":
+                    SetupInstrumentLayout(guitar7Layout, new float[] { 65.41f, 82.41f, 110.00f, 147.83f, 196.00f, 246.96f, 329.63f }, new string[] { "C", "E", "A", "D", "G", "B", "E"});
+                    break;
+            }
+        }
+        
         private void tuningUkuleleSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;

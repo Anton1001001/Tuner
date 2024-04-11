@@ -1,6 +1,7 @@
 Button;obj\Debug\110\res\layout\bas_buttons_layout.xml
 Button;obj\Debug\110\res\layout\cello_buttons_layout.xml
 Button;obj\Debug\110\res\layout\guitar_buttons_layout.xml
+Button;obj\Debug\110\res\layout\guitar7_buttons_layout.xml
 Button;obj\Debug\110\res\layout\ukulele_buttons_layout.xml
 Button;obj\Debug\110\res\layout\violin_buttons_layout.xml
 color;obj\Debug\110\res\values\colors.xml
@@ -15,12 +16,14 @@ LinearLayout;obj\Debug\110\res\layout\activity_main.xml
 LinearLayout;obj\Debug\110\res\layout\bas_buttons_layout.xml
 LinearLayout;obj\Debug\110\res\layout\cello_buttons_layout.xml
 LinearLayout;obj\Debug\110\res\layout\guitar_buttons_layout.xml
+LinearLayout;obj\Debug\110\res\layout\guitar7_buttons_layout.xml
 LinearLayout;obj\Debug\110\res\layout\ukulele_buttons_layout.xml
 LinearLayout;obj\Debug\110\res\layout\violin_buttons_layout.xml
 RelativeLayout;obj\Debug\110\res\layout\activity_main.xml
 RelativeLayout;obj\Debug\110\res\layout\bas_buttons_layout.xml
 RelativeLayout;obj\Debug\110\res\layout\cello_buttons_layout.xml
 RelativeLayout;obj\Debug\110\res\layout\guitar_buttons_layout.xml
+RelativeLayout;obj\Debug\110\res\layout\guitar7_buttons_layout.xml
 RelativeLayout;obj\Debug\110\res\layout\ukulele_buttons_layout.xml
 RelativeLayout;obj\Debug\110\res\layout\violin_buttons_layout.xml
 resources;obj\Debug\110\res\values\colors.xml

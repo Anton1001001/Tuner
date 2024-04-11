@@ -52,5 +52,12 @@
         <item>Slack key</item>
         <item>Строй B (-1)</item>
         <item>Строй C# (+1)</item>
+    </string-array>    
+    
+    <string-array name="guitar7_tuning_array">
+        <item>Standard</item>
+        <item>Drop A</item>
+        <item>Русская гитара</item>
+        <item>Бразильская гитара</item>
     </string-array>
 </resources>
