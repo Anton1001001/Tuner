@@ -69,8 +69,14 @@
         <None Include="Assets\AboutAssets.txt" />
     </ItemGroup>
     <ItemGroup>
+        <AndroidResource Include="Resources\drawable\bass.png" />
         <AndroidResource Include="Resources\drawable\button_state.xml" />
+        <AndroidResource Include="Resources\drawable\cello.png" />
+        <AndroidResource Include="Resources\drawable\guitar.png" />
+        <AndroidResource Include="Resources\drawable\guitar7.png" />
         <AndroidResource Include="Resources\drawable\rounded_background.xml" />
+        <AndroidResource Include="Resources\drawable\ukulele.png" />
+        <AndroidResource Include="Resources\drawable\violin.png" />
         <AndroidResource Include="Resources\layout\activity_main.axml">
             <SubType>Designer</SubType>
         </AndroidResource>

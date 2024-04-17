@@ -239,3 +239,9 @@ C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_Con
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_GenerateJavaStubs.stamp
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\res\drawable\guitar.png
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\res\drawable\bass.png
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\res\drawable\cello.png
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\res\drawable\guitar7.png
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\res\drawable\ukulele.png
+C:\Users\Melekit\source\repos\Tuner\Tunerv1.0\Tunerv1.0\obj\Debug\110\res\drawable\violin.png
