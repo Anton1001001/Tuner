@@ -16,7 +16,6 @@ namespace Tunerv1._0
     public class MainActivity : AppCompatActivity
     {
         private SoundCapturer _soundCapturer;
-        private TextView _textView;
         private const int RequestRecordAudioPermissionCode = 100;
         private static double freq;
         private static object lockObject = new object(); 
@@ -62,26 +61,28 @@ namespace Tunerv1._0
    
         }
         
-        private void SetupLayout(View layout, Button button, float frequency, string note)
+
+        
+        private void SetupLayout(View layout, Button button, GuitarString guitarString)
         {
             button.Click += (sender, e) =>
             {
-                drawingView.Frequency = frequency;
-                drawingView.minFrequency = frequency - 50;
-                drawingView.maxFrequency = frequency + 50;
-                drawingView.Note = note;
+                drawingView.Frequency = guitarString.Frequency;
+                drawingView.minFrequency = guitarString.Frequency - 20;
+                drawingView.maxFrequency = guitarString.Frequency + 20;
+                drawingView.Note = guitarString.Note;
             };
         }
-
-        private void SetupInstrumentLayout(View instrumentLayout, float[] frequencies, string[] notes)
+        private void SetupInstrumentLayout(View instrumentLayout, GuitarString[] guitarStrings)
         {
-            for (int i = 0; i < frequencies.Length; i++)
+            for (int i = 0; i < guitarStrings.Length; i++)
             {
                 Button button = instrumentLayout.FindViewById<Button>(Resource.Id.button1 + i);
-                SetupLayout(instrumentLayout, button, frequencies[i], notes[i]);
-                button.Text = notes[i];
+                SetupLayout(instrumentLayout, button, guitarStrings[i]);
+                button.Text = guitarStrings[i].Note;
             }
         }
+        
 
         private View guitarLayout;
         private View basLayout;
@@ -89,6 +90,7 @@ namespace Tunerv1._0
         private View violinLayout;
         private View ukuleleLayout;
         private View guitar7Layout;
+        public static GuitarString[] tuningNotes;
         private void instrumentSpinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -187,8 +189,7 @@ namespace Tunerv1._0
                     break;
             }
         }
-
-
+        
         private void tuningGuitar7Spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -197,99 +198,254 @@ namespace Tunerv1._0
             switch (tuning)
             {
                 case "Standard":
-                    SetupInstrumentLayout(guitar7Layout, new float[] { 61.74f, 82.41f, 110.00f, 147.83f, 196.00f, 246.96f, 329.63f }, new string[] { "B", "E", "A", "D", "G", "B", "E"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(61.74f, "B"),
+                        new GuitarString(82.41f, "E"),
+                        new GuitarString(110.00f, "A"),
+                        new GuitarString(147.83f, "D"),
+                        new GuitarString(196.00f, "G"),
+                        new GuitarString(246.96f, "B"),
+                        new GuitarString(329.63f, "E")
+                    };
                     break;
                 case "Drop A":
-                    SetupInstrumentLayout(guitar7Layout, new float[] { 55.00f, 82.41f, 110.00f, 147.83f, 196.00f, 246.96f, 329.63f }, new string[] { "A", "E", "A", "D", "G", "B", "E"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(55.00f, "A"),
+                        new GuitarString(82.41f, "E"),
+                        new GuitarString(110.00f, "A"),
+                        new GuitarString(147.83f, "D"),
+                        new GuitarString(196.00f, "G"),
+                        new GuitarString(246.96f, "B"),
+                        new GuitarString(329.63f, "E")
+                    };
                     break;
                 case "Русская гитара":
-                    SetupInstrumentLayout(guitar7Layout, new float[] { 73.91f, 98.00f, 123.48f, 147.83f, 196.00f, 246.96f, 293.33f }, new string[] { "D", "G", "B", "D", "G", "B", "D"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(73.91f, "D"),
+                        new GuitarString(98.00f, "G"),
+                        new GuitarString(123.48f, "B"),
+                        new GuitarString(147.83f, "D"),
+                        new GuitarString(196.00f, "G"),
+                        new GuitarString(246.96f, "B"),
+                        new GuitarString(293.33f, "D")
+                    };
                     break;
                 case "Бразильская гитара":
-                    SetupInstrumentLayout(guitar7Layout, new float[] { 65.41f, 82.41f, 110.00f, 147.83f, 196.00f, 246.96f, 329.63f }, new string[] { "C", "E", "A", "D", "G", "B", "E"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(65.41f, "C"),
+                        new GuitarString(82.41f, "E"),
+                        new GuitarString(110.00f, "A"),
+                        new GuitarString(147.83f, "D"),
+                        new GuitarString(196.00f, "G"),
+                        new GuitarString(246.96f, "B"),
+                        new GuitarString(329.63f, "E")
+                    };
+                    break;
+                default:
+                    tuningNotes = new GuitarString[0];
                     break;
             }
+
+            SetupInstrumentLayout(guitar7Layout, tuningNotes);
         }
-        
         private void tuningUkuleleSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             string tuning = (string)spinner.GetItemAtPosition(e.Position);
-            
+
             switch (tuning)
             {
                 case "Standard":
-                    SetupInstrumentLayout(ukuleleLayout, new float[] { 392.00f, 261.63f, 329.63f, 440.00f }, new string[] { "G", "C", "E", "A"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(392.00f, "G"),
+                        new GuitarString(261.63f, "C"),
+                        new GuitarString(329.63f, "E"),
+                        new GuitarString(440.00f, "A")
+                    };
                     break;
                 case "Строй D сопрано":
-                    SetupInstrumentLayout(ukuleleLayout, new float[] { 440.00f, 293.33f, 369.99f, 493.88f }, new string[] { "A", "D", "F#", "B"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(440.00f, "A"),
+                        new GuitarString(293.33f, "D"),
+                        new GuitarString(369.99f, "F#"),
+                        new GuitarString(493.88f, "B")
+                    };
                     break;
                 case "Low G":
-                    SetupInstrumentLayout(ukuleleLayout, new float[] { 196.00f, 261.63f, 329.63f, 440.00f }, new string[] { "G", "C", "E", "A"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(196.00f, "G"),
+                        new GuitarString(261.63f, "C"),
+                        new GuitarString(329.63f, "E"),
+                        new GuitarString(440.00f, "A")
+                    };
                     break;
                 case "Low A":
-                    SetupInstrumentLayout(ukuleleLayout, new float[] { 220.00f, 293.33f, 369.99f, 493.88f }, new string[] { "A", "D", "F#", "B"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(220.00f, "A"),
+                        new GuitarString(293.33f, "D"),
+                        new GuitarString(369.99f, "F#"),
+                        new GuitarString(493.88f, "B")
+                    };
                     break;
                 case "Slack key":
-                    SetupInstrumentLayout(ukuleleLayout, new float[] { 392.00f, 261.63f, 329.63f, 392.00f }, new string[] { "G", "C", "E", "G"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(392.00f, "G"),
+                        new GuitarString(261.63f, "C"),
+                        new GuitarString(329.63f, "E"),
+                        new GuitarString(392.00f, "G")
+                    };
                     break;
                 case "Строй B (-1)":
-                    SetupInstrumentLayout(ukuleleLayout, new float[] { 369.99f, 246.96f, 311.13f, 415.00f }, new string[] { "F#", "B", "D#", "G#"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(369.99f, "F#"),
+                        new GuitarString(246.96f, "B"),
+                        new GuitarString(311.13f, "D#"),
+                        new GuitarString(415.00f, "G#")
+                    };
                     break;
                 case "Строй C# (+1)":
-                    SetupInstrumentLayout(ukuleleLayout, new float[] { 415.30f, 277.18f, 349.23f, 466.16f }, new string[] { "G#", "C#4", "F4", "A#4"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(415.30f, "G#"),
+                        new GuitarString(277.18f, "C#"),
+                        new GuitarString(349.23f, "F4"),
+                        new GuitarString(466.16f, "A#")
+                    };
+                    break;
+                default:
+                    tuningNotes = new GuitarString[0]; // Пустой массив, если настройка не определена
                     break;
             }
+
+            SetupInstrumentLayout(ukuleleLayout, tuningNotes);
         }
         private void tuningCelloSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             string tuning = (string)spinner.GetItemAtPosition(e.Position);
 
-
             switch (tuning)
             {
-                case"Standard":
-                    SetupInstrumentLayout(celloLayout, new float[] { 65.41f, 98.00f, 147.83f, 220.00f }, new string[] { "C", "G", "D", "A"});
+                case "Standard":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(65.41f, "C"),
+                        new GuitarString(98.00f, "G"),
+                        new GuitarString(147.83f, "D"),
+                        new GuitarString(220.00f, "A")
+                    };
                     break;
                 case "Золтан Кодай":
-                    SetupInstrumentLayout(celloLayout, new float[] { 61.74f, 92.50f, 147.83f, 220.00f }, new string[] { "B", "F#", "D", "A"});
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(61.74f, "B"),
+                        new GuitarString(92.50f, "F#"),
+                        new GuitarString(147.83f, "D"),
+                        new GuitarString(220.00f, "A")
+                    };
+                    break;
+                default:
+                    tuningNotes = new GuitarString[0]; // Пустой массив, если настройка не определена
                     break;
             }
+
+            SetupInstrumentLayout(celloLayout, tuningNotes);
         }
         private void tuningBasSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             string tuning = (string)spinner.GetItemAtPosition(e.Position);
 
-            
             switch (tuning)
             {
-                case"Standard":
-                    SetupInstrumentLayout(basLayout, new float[] { 41.21f, 55.00f, 73.91f, 98.00f }, new string[] { "E", "A", "D", "G"});
+                case "Standard":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(41.21f, "E"),
+                        new GuitarString(55.00f, "A"),
+                        new GuitarString(73.91f, "D"),
+                        new GuitarString(98.00f, "G")
+                    };
                     break;
-                case"На пол тона ниже":
-                    SetupInstrumentLayout(basLayout, new float[] { 38.88f, 51.90f, 63.30f, 92.50f }, new string[] { "D#", "G#", "C#", "F#"});
+                case "На пол тона ниже":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(38.88f, "D#"),
+                        new GuitarString(51.90f, "G#"),
+                        new GuitarString(63.30f, "C#"),
+                        new GuitarString(92.50f, "F#")
+                    };
                     break;
-                case"На тон ниже":
-                    SetupInstrumentLayout(basLayout, new float[] { 36.95f, 49.00f, 65.41f, 87.31f }, new string[] { "D", "G", "C", "F"});
+                case "На тон ниже":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(36.95f, "D"),
+                        new GuitarString(49.00f, "G"),
+                        new GuitarString(65.41f, "C"),
+                        new GuitarString(87.31f, "F")
+                    };
                     break;
-                case"Drop D":
-                    SetupInstrumentLayout(basLayout, new float[] { 36.95f, 55.00f, 73.91f, 98.00f }, new string[] { "D", "A", "D", "G"});
+                case "Drop D":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(36.95f, "D"),
+                        new GuitarString(55.00f, "A"),
+                        new GuitarString(73.91f, "D"),
+                        new GuitarString(98.00f, "G")
+                    };
                     break;
-                case"Drop C":
-                    SetupInstrumentLayout(basLayout, new float[] { 32.70f, 49.00f, 65.41f, 87.31f }, new string[] { "C", "G", "C", "F"});
+                case "Drop C":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(32.70f, "C"),
+                        new GuitarString(49.00f, "G"),
+                        new GuitarString(65.41f, "C"),
+                        new GuitarString(87.31f, "F")
+                    };
                     break;
-                case"Drop C#":
-                    SetupInstrumentLayout(basLayout, new float[] { 34.65f, 51.90f, 69.30f, 92.50f }, new string[] { "C#", "G#", "C#", "F#"});
+                case "Drop C#":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(34.65f, "C#"),
+                        new GuitarString(51.90f, "G#"),
+                        new GuitarString(69.30f, "C#"),
+                        new GuitarString(92.50f, "F#")
+                    };
                     break;
-                case"На пол тона выше":
-                    SetupInstrumentLayout(basLayout, new float[] { 43.65f, 58.26f, 77.78f, 103.80f }, new string[] { "F", "A#", "D#", "G#"});
+                case "На пол тона выше":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(43.65f, "F"),
+                        new GuitarString(58.26f, "A#"),
+                        new GuitarString(77.78f, "D#"),
+                        new GuitarString(103.80f, "G#")
+                    };
                     break;
-                case"На тон выше":
-                    SetupInstrumentLayout(basLayout, new float[] { 46.25f, 61.74f, 82.41f, 110.00f }, new string[] { "F#", "B", "E", "A"});
+                case "На тон выше":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(46.25f, "F#"),
+                        new GuitarString(61.74f, "B"),
+                        new GuitarString(82.41f, "E"),
+                        new GuitarString(110.00f, "A")
+                    };
+                    break;
+                default:
+                    tuningNotes = new GuitarString[0]; // Пустой массив, если настройка не определена
                     break;
             }
+
+            SetupInstrumentLayout(basLayout, tuningNotes);
         }
         private void tuningGuitarSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
@@ -298,55 +454,148 @@ namespace Tunerv1._0
 
             switch (tuning)
             {
-                case"Standard":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 82.41f, 110.00f, 146.83f, 196.00f, 246.96f, 329.63f }, new string[] { "E", "A", "D", "G", "B", "E" });
+                case "Standard":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(82.41f, "E"),
+                        new GuitarString(110.00f, "A"),
+                        new GuitarString(146.83f, "D"),
+                        new GuitarString(196.00f, "G"),
+                        new GuitarString(246.96f, "B"),
+                        new GuitarString(329.63f, "E")
+                    };
                     break;
-                case"Drop D":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 146.83f, 196.00f, 246.96f, 329.63f }, new string[] { "D", "A", "D", "G", "B", "E" });
+                case "Drop D":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(73.91f, "D"),
+                        new GuitarString(110.00f, "A"),
+                        new GuitarString(146.83f, "D"),
+                        new GuitarString(196.00f, "G"),
+                        new GuitarString(246.96f, "B"),
+                        new GuitarString(329.63f, "E")
+                    };
                     break;
-                case"Dsus 4":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 146.83f, 196.00f, 220.00f, 293.33f }, new string[] { "D", "A", "D", "G", "A", "D" });
+                case "Dsus 4":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(73.91f, "D"),
+                        new GuitarString(110.00f, "A"),
+                        new GuitarString(146.83f, "D"),
+                        new GuitarString(196.00f, "G"),
+                        new GuitarString(220.00f, "A"),
+                        new GuitarString(293.33f, "D")
+                    };
                     break;
-                case"Asus 2":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 82.41f, 110.00f, 123.48f, 164.81f, 220.00f, 329.63f }, new string[] { "E", "A", "B", "E", "A", "E" });
-                    break;                
-                case"Asus 4":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 82.41f, 110.00f, 146.83f, 164.81f, 220.00f, 329.63f }, new string[] { "E", "A", "D", "E", "A", "E" });
+                case "Asus 2":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(82.41f, "E"),
+                        new GuitarString(110.00f, "A"),
+                        new GuitarString(123.48f, "B"),
+                        new GuitarString(164.81f, "E"),
+                        new GuitarString(220.00f, "A"),
+                        new GuitarString(329.63f, "E")
+                    };
                     break;
-                case"Drop C":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 65.41f, 98.00f, 131.81f, 174.91f, 220.00f, 293.70f }, new string[] { "C", "G", "C", "F", "A", "D" });
+                case "Asus 4":
+                    tuningNotes = new GuitarString[]
+                    {
+                        new GuitarString(82.41f, "E"),
+                        new GuitarString(110.00f, "A"),
+                        new GuitarString(146.83f, "D"),
+                        new GuitarString(164.81f, "E"),
+                        new GuitarString(220.00f, "A"),
+                        new GuitarString(329.63f, "E")
+                    };
                     break;
-                case"На пол тона ниже":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 77.78f, 103.80f, 138.59f, 185.00f, 233.08f, 311.13f }, new string[] { "D#", "G#", "C#", "F#", "A#", "D#" });
-                    break;
-                case"Drop C#":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 69.30f, 103.80f, 138.59f, 185.00f, 233.08f, 311.13f }, new string[] { "C#", "G#", "C#", "F#", "A#", "D#" });
-                    break;
-                case"На тон ниже":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 73.42f, 98.00f, 130.82f, 174.62f, 220.00f, 293.66f }, new string[] { "D", "G", "C", "F", "A", "D" });
-                    break;
-                case"Open D":
-                    SetupInstrumentLayout(guitarLayout, new float[] { 73.91f, 110.00f, 146.83f, 185.00f, 220.00f, 293.70f }, new string[] { "D", "A", "D", "F#", "A", "D" });
+            case "Drop C":
+                tuningNotes = new GuitarString[]
+                {
+                    new GuitarString(65.41f, "C"),
+                    new GuitarString(98.00f, "G"),
+                    new GuitarString(131.81f, "C"),
+                    new GuitarString(174.91f, "F"),
+                    new GuitarString(220.00f, "A"),
+                    new GuitarString(293.70f, "D")
+                };
+                break;
+            case "На пол тона ниже":
+                tuningNotes = new GuitarString[]
+                {
+                    new GuitarString(77.78f, "D#"),
+                    new GuitarString(103.80f, "G#"),
+                    new GuitarString(138.59f, "C#"),
+                    new GuitarString(185.00f, "F#"),
+                    new GuitarString(233.08f, "A#"),
+                    new GuitarString(311.13f, "D#")
+                };
+                break;
+            case "Drop C#":
+                tuningNotes = new GuitarString[]
+                {
+                    new GuitarString(69.30f, "C#"),
+                    new GuitarString(103.80f, "G#"),
+                    new GuitarString(138.59f, "C#"),
+                    new GuitarString(185.00f, "F#"),
+                    new GuitarString(233.08f, "A#"),
+                    new GuitarString(311.13f, "D#")
+                };
+                break;
+            case "На тон ниже":
+                tuningNotes = new GuitarString[]
+                {
+                    new GuitarString(73.42f, "D"),
+                    new GuitarString(98.00f, "G"),
+                    new GuitarString(130.82f, "C"),
+                    new GuitarString(174.62f, "F"),
+                    new GuitarString(220.00f, "A"),
+                    new GuitarString(293.66f, "D")
+                };
+                break;
+            case "Open D":
+                tuningNotes = new GuitarString[]
+                {
+                    new GuitarString(73.91f, "D"),
+                    new GuitarString(110.00f, "A"),
+                    new GuitarString(146.83f, "D"),
+                    new GuitarString(185.00f, "F#"),
+                    new GuitarString(220.00f, "A"),
+                    new GuitarString(293.70f, "D")
+                };
+                break;
+                default:
+                    tuningNotes = new GuitarString[0]; // Empty array if tuning is not defined
                     break;
             }
-        }        
+
+            SetupInstrumentLayout(guitarLayout, tuningNotes);
+        }
         private void tuningViolinSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            SetupInstrumentLayout(violinLayout, new float[] { 329.63f, 440.00f, 293.66f, 196.00f }, new string[] { "E", "A", "D", "G" });
+            
+            tuningNotes = new GuitarString[]
+            {
+                new GuitarString(329.63f, "E"),
+                new GuitarString(440.00f, "A"),
+                new GuitarString(293.66f, "D"),
+                new GuitarString(196.00f, "G")
+            };
+            SetupInstrumentLayout(violinLayout, tuningNotes);
         }
-        
-        
         
         public class DrawingView : View
          {
              private Paint _paint;
-             public float Frequency; // Пример частоты
-             public string Note = ""; // Пример частоты
-             private int _circleRadius = 20; // Радиус кружка
+             public float Frequency;
+             public string Note = "";
+             private int _circleRadius = 20;
+             private int _rectSize = 40;
              private Paint _circle;
              public float minFrequency;
              public float maxFrequency;
              private System.Timers.Timer _timer;
+             private Paint _rect;
 
              public DrawingView(Context context) : base(context)
              {
@@ -362,6 +611,12 @@ namespace Tunerv1._0
                      AntiAlias = true
                  };
 
+                 _rect = new Paint
+                 {
+                     Color = Color.Rgb(0,191,255),
+                     AntiAlias = true
+                 };
+                 
                  _circle = new Paint
                  {
                      Color = Color.Rgb(0,191,255),
@@ -398,6 +653,26 @@ namespace Tunerv1._0
                  return Color.Rgb(r, g, b);
              }
              
+             public static (float frequency, string note) FindNearestFrequency(Double parsedFrequency)
+             {
+                 Double minDifference = float.MaxValue;
+                 float nearestFrequency = 0;
+                 string nearestNote = "";
+
+                 foreach (var guitarString in tuningNotes)
+                 {
+                     Double difference = Math.Abs(guitarString.Frequency - parsedFrequency);
+                     if (difference < minDifference)
+                     {
+                         minDifference = difference;
+                         nearestFrequency = guitarString.Frequency;
+                         nearestNote = guitarString.Note;
+                     }
+                 }
+
+                 return (nearestFrequency, nearestNote);
+             }
+             
              protected override void OnDraw(Canvas canvas)
              {
                  base.OnDraw(canvas);
@@ -410,17 +685,32 @@ namespace Tunerv1._0
                      parsedFrequency = freq;
                  }
 
+                 /////////////////// for auto
+                 // if (true)
+                 // {
+                 //     var find =FindNearestFrequency(parsedFrequency);
+                 //     Frequency = find.frequency;
+                 //     Note = find.note;
+                 // }
+                /////////////////////////////////////
                  var percentage = (parsedFrequency - minFrequency) / (maxFrequency - minFrequency);
 
+                 _rect.Color = InterpolateColor(percentage);
                  _circle.Color = InterpolateColor(percentage);
                  var circleX = (int)(screenWidth * percentage);
                  
                  var lineX = screenWidth / 2;
                  canvas.DrawLine(lineX, 60, lineX, screenHeight-50, _paint);
-                 canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
+                 
+                 canvas.DrawLine(lineX - _circleRadius, 60 + _circleRadius*2, lineX - _circleRadius, screenHeight-50 - _circleRadius*2, _paint);
+                 canvas.DrawLine(lineX + _circleRadius, 60 + _circleRadius*2, lineX + _circleRadius, screenHeight-50 - _circleRadius*2, _paint);
 
-                 var borderLeft = "-50";
-                 var borderRight = "+50";
+                 
+                 canvas.DrawRect(circleX - _circleRadius, screenHeight/2 - _circleRadius, circleX + _circleRadius,screenHeight/2 + _circleRadius, _rect);
+                 //canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
+                 
+                 var borderLeft = "-20";
+                 var borderRight = "+20";
                  
                  _paint.TextSize = 40;
                  canvas.DrawText(borderLeft, 20, _paint.TextSize, _paint);

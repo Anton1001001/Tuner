@@ -56,6 +56,7 @@
         <Reference Include="System.Numerics, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="GuitarString.cs" />
         <Compile Include="MainActivity.cs" />
         <Compile Include="Resources\Resource.Designer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
