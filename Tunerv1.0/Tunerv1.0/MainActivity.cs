@@ -685,14 +685,20 @@ namespace Tunerv1._0
                      parsedFrequency = freq;
                  }
 
-                 /////////////////// for auto
-                 // if (true)
+                 // CheckBox yourCheckBox = FindViewById<CheckBox>(Resource.Id.auto_checkbox);
+                 // bool isChecked = yourCheckBox.Checked;
+                 //
+                 // if (isChecked)
                  // {
-                 //     var find =FindNearestFrequency(parsedFrequency);
-                 //     Frequency = find.frequency;
-                 //     Note = find.note;
+                 //     // var find =FindNearestFrequency(parsedFrequency);
+                 //     // Frequency = find.frequency;
+                 //     // Note = find.note;
                  // }
-                /////////////////////////////////////
+                 // else
+                 // {
+                 //     // Чекбокс выключен
+                 // }
+                 
                  var percentage = (parsedFrequency - minFrequency) / (maxFrequency - minFrequency);
 
                  _rect.Color = InterpolateColor(percentage);

@@ -14,10 +14,12 @@
 	<!--<skia:SKCanvasView :Name="canvasView" PaintSurface="OnCanvasViewPaintSurface" android:layout_height="410dp"
 				   android:layout_width="334dp"/>-->
 
+
+	
 	<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="51dp"
-			android:layout_marginBottom="40dp">
+			android:layout_marginBottom="10dp">
 		<Spinner
 				android:id="@+id/instrumentsSpinner"
 				android:layout_width="160dp"
@@ -48,6 +50,23 @@
 
 	</RelativeLayout>
 
+	
+	<RelativeLayout 
+			android:layout_width="match_parent" 
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp">
+		
+		<CheckBox
+				android:id="@+id/auto_checkbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Auto"
+				android:layout_marginTop="10dp"
+				android:layout_marginStart="10dp"
+				android:textColor="@android:color/white"
+				android:buttonTint="@android:color/white"/>
+	</RelativeLayout>
+	
 
 	<FrameLayout
 			android:id="@+id/drawingContainer"
