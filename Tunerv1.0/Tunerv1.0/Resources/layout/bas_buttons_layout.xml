@@ -26,6 +26,7 @@
 
             <Button
                     style="@style/ButtonStyle"
+                    android:layout_marginTop="155dp"
                     android:id="@+id/button4"/>
 
             <Button

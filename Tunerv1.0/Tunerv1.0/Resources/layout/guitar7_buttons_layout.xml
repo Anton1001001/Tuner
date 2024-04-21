@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/guitar7"
+            android:layout_marginTop="-300dp"
             android:scaleType="centerCrop"/>
 
 
@@ -27,6 +28,7 @@
 
             <Button
                     style="@style/ButtonStyle"
+                    android:layout_marginTop="210dp"
                     android:id="@+id/button3"/>
             <Button
                     style="@style/ButtonStyle"
@@ -51,6 +53,7 @@
         <Button
                 android:text="A"
                 style="@style/ButtonStyle"
+                android:layout_marginTop="210dp"
                 android:id="@+id/button4"/>
 
         <Button

@@ -27,11 +27,13 @@
 
             <Button
                     style="@style/ButtonStyle"
+                    android:layout_marginTop="310dp"
                     android:id="@+id/button2"/>
 
             <Button
                     android:text="G"
                     style="@style/ButtonStyle"
+                    android:layout_marginTop="50dp"
                     android:id="@+id/button1"/>
         </LinearLayout>
 
@@ -48,11 +50,13 @@
         <Button
                 android:text="A"
                 style="@style/ButtonStyle"
+                android:layout_marginTop="280dp"
                 android:id="@+id/button3"/>
 
         <Button
                 android:text="E"
                 style="@style/ButtonStyle"
+                android:layout_marginTop="40dp"
                 android:id="@+id/button4"/>
 
     </LinearLayout>

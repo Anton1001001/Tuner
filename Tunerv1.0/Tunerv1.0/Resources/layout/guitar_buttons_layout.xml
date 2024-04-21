@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/guitar"
+            android:layout_marginTop="-130dp"
             android:scaleType="centerCrop"/>
 
 
@@ -27,14 +28,17 @@
 
             <Button
                     style="@style/ButtonStyle"
+                    android:layout_marginTop="160dp"
                     android:id="@+id/button3"/>
             <Button
                     style="@style/ButtonStyle"
+                    android:layout_marginTop="30dp"
                     android:id="@+id/button2"/>
 
             <Button
                     android:text="G"
                     style="@style/ButtonStyle"
+                    android:layout_marginTop="30dp"
                     android:id="@+id/button1"/>
         </LinearLayout>
 
@@ -51,15 +55,18 @@
         <Button
                 android:text="A"
                 style="@style/ButtonStyle"
+                android:layout_marginTop="160dp"
                 android:id="@+id/button4"/>
 
         <Button
                 android:text="E"
                 style="@style/ButtonStyle"
+                android:layout_marginTop="30dp"
                 android:id="@+id/button5"/> 
         <Button
                 android:text="E"
                 style="@style/ButtonStyle"
+                android:layout_marginTop="30dp"
                 android:id="@+id/button6"/>
 
     </LinearLayout>

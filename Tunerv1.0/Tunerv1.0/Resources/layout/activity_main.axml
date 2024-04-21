@@ -19,7 +19,8 @@
 	<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="51dp"
-			android:layout_marginBottom="10dp">
+			android:layout_marginBottom="10dp"
+			android:layout_marginTop="20dp" >
 		<Spinner
 				android:id="@+id/instrumentsSpinner"
 				android:layout_width="160dp"
@@ -72,7 +73,7 @@
 			android:id="@+id/drawingContainer"
 			android:layout_width="match_parent"
 			android:layout_height="100dp"
-			android:layout_marginTop="10dp"/>
+			android:layout_marginTop="30dp"/>
 
 
 
