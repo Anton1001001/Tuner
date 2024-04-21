@@ -88,7 +88,7 @@ namespace Tuner
             }
 
             while (i < _audioBufferLength) {
-                if (_nsdf[maxArg] < _nsdf[i] - 0.04)
+                if (_nsdf[maxArg] < _nsdf[i] - 0.03)
                     maxArg = i;
                 i++;
             }

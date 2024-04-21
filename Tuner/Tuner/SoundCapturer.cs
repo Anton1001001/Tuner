@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Android.Media;
-using Android.Util;
 
 namespace Tuner
 {
@@ -33,7 +32,6 @@ namespace Tuner
     {
         private AudioRecord _audioRecord;
         private int _bufferSize;
-        private Queue<Sound> _queue;
         private AutoResetEvent _soundCaptureEvent;
         private AutoResetEvent _displayFrequencyEvent;
         private Thread _soundCaptureThread;
@@ -41,7 +39,6 @@ namespace Tuner
         private double[] _audioBuffer;
         private bool _isCapturing;
         private double _freq;
-        private double _prevFreq;
         private float[] _buffer;
         private const double MaxAmplitude = 1.0f;
         private const double MicThreshold = 0.05f;
@@ -72,8 +69,7 @@ namespace Tuner
             {
                 return;
             }
-
-            _prevFreq = 0;
+            
             ChannelIn channelConfig = ChannelIn.Stereo;
             Encoding audioFormat = Encoding.PcmFloat;
             _bufferSize = AudioRecord.GetMinBufferSize(SampleRate, channelConfig, audioFormat);
@@ -85,19 +81,16 @@ namespace Tuner
                 _bufferSize);
 
             _buffer = new float[_bufferSize];
-            _queue = new Queue<Sound>();
             _audioBuffer = new double[FramesPerBuffer];
             _analyzer = new SoundAnalyzer(_audioBuffer, SampleRate);
             _soundCaptureEvent = new AutoResetEvent(false);
             _displayFrequencyEvent = new AutoResetEvent(false);
             _soundCaptureThread = new Thread(SoundCaptureThreadLoop);
-            //_displayFrequencyThread = new Thread(DisplayFrequencyThreadLoop);
 
             _isCapturing = true;
             _audioRecord.StartRecording();
             _soundCaptureThread.Start();
             _soundCaptureEvent.Set();
-            //_displayFrequencyThread.Start();
         }
 
         private void SoundCaptureThreadLoop()
@@ -131,7 +124,7 @@ namespace Tuner
                 inputFreq.Enqueue(newSound.Frequency);
                 freqCount[(int)((newSound.Frequency - lowBorder) / step)]++;
 
-                if (inputFreq.Count() >= 5)
+                if (inputFreq.Count >= 10)
                 {
                     double freq = inputFreq.Dequeue();
 
@@ -141,7 +134,7 @@ namespace Tuner
                     count += rangeIdx > 0 ? freqCount[rangeIdx - 1] : 0;
                     count += rangeIdx > freqCount.Length ? freqCount[rangeIdx - 1] : 0;
 
-                    if (count >= 3)
+                    if (count >= 6)
                     {
                         OnFrequencyDetected(new FrequencyDetectedEventArgs(freq));
                     }
