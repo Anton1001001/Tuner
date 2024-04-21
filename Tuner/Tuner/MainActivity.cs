@@ -698,8 +698,8 @@ namespace Tuner
                      if (isChecked) {
                          var find = FindNearestFrequency(parsedFrequency);
                          Frequency = find.frequency;
-                         maxFrequency = Frequency + 20;
-                         minFrequency = Frequency - 20;
+                         maxFrequency = Frequency + 50;
+                         minFrequency = Frequency - 50;
                          Note = find.note;
                          percentage = ((parsedFrequency - minFrequency) / (maxFrequency - minFrequency));
                      }

@@ -124,7 +124,7 @@ namespace Tuner
                 inputFreq.Enqueue(newSound.Frequency);
                 freqCount[(int)((newSound.Frequency - lowBorder) / step)]++;
 
-                if (inputFreq.Count >= 10)
+                if (inputFreq.Count >= 6) 
                 {
                     double freq = inputFreq.Dequeue();
 
@@ -134,7 +134,7 @@ namespace Tuner
                     count += rangeIdx > 0 ? freqCount[rangeIdx - 1] : 0;
                     count += rangeIdx > freqCount.Length ? freqCount[rangeIdx - 1] : 0;
 
-                    if (count >= 6)
+                    if (count >= 4)
                     {
                         OnFrequencyDetected(new FrequencyDetectedEventArgs(freq));
                     }
