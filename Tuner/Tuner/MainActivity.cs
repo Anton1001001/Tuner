@@ -73,6 +73,7 @@ namespace Tuner
                 drawingView.minFrequency = guitarString.Frequency - 20;
                 drawingView.maxFrequency = guitarString.Frequency + 20;
                 drawingView.Note = guitarString.Note;
+                checkBox.Checked = false;
             };
         }
         private void SetupInstrumentLayout(View instrumentLayout, GuitarString[] guitarStrings)
@@ -570,7 +571,7 @@ namespace Tuner
                 };
                 break;
                 default:
-                    tuningNotes = new GuitarString[0]; // Empty array if tuning is not defined
+                    tuningNotes = new GuitarString[0];
                     break;
             }
 
@@ -622,11 +623,6 @@ namespace Tuner
                      AntiAlias = true
                  };
                  
-                 _circle = new Paint
-                 {
-                     Color = Color.Rgb(0,191,255),
-                     AntiAlias = true
-                 };
                  _timer = new System.Timers.Timer(30);
                  _timer.Elapsed += OnTimerElapsed;
                  _timer.AutoReset = true;
@@ -714,7 +710,15 @@ namespace Tuner
                              percentage = ((parsedFrequency - minFrequency) / (maxFrequency - minFrequency));
                          }
                      }
-                 
+
+                     if (percentage > 1)
+                     {
+                         percentage = 1;
+                     }
+                     if (percentage < 0)
+                     {
+                         percentage = 0;
+                     }
                     
                  
 
