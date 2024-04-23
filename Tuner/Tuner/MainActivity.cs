@@ -724,7 +724,7 @@ namespace Tuner
 
 
                  _rect.Color = InterpolateColor(percentage);
-                 _circle.Color = InterpolateColor(percentage);
+                 //_circle.Color = InterpolateColor(percentage);
                  var circleX = (int)(screenWidth * percentage);
                  
                  var lineX = screenWidth / 2;
