@@ -28,7 +28,7 @@
 
             <Button
                     style="@style/ButtonStyle"
-                    android:layout_marginTop="160dp"
+                    android:layout_marginTop="185dp"
                     android:id="@+id/button3"/>
             <Button
                     style="@style/ButtonStyle"
@@ -55,7 +55,7 @@
         <Button
                 android:text="A"
                 style="@style/ButtonStyle"
-                android:layout_marginTop="160dp"
+                android:layout_marginTop="185dp"
                 android:id="@+id/button4"/>
 
         <Button
