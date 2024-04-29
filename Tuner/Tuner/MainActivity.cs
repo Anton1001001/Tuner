@@ -595,8 +595,7 @@ namespace Tuner
              private Paint _paint;
              public float Frequency;
              public string Note = "";
-             private int _circleRadius = 20;
-             private int _rectSize = 40;
+             private int _rectSize = 20;
              private Paint _circle;
              public float minFrequency;
              public float maxFrequency;
@@ -728,14 +727,13 @@ namespace Tuner
                  var circleX = (int)(screenWidth * percentage);
                  
                  var lineX = screenWidth / 2;
-                 canvas.DrawLine(lineX, 60, lineX, screenHeight-50, _paint);
+                 canvas.DrawLine(lineX, 60, lineX, screenHeight-140, _paint);
                  
-                 canvas.DrawLine(lineX - _circleRadius, 60 + _circleRadius*2, lineX - _circleRadius, screenHeight-50 - _circleRadius*2, _paint);
-                 canvas.DrawLine(lineX + _circleRadius, 60 + _circleRadius*2, lineX + _circleRadius, screenHeight-50 - _circleRadius*2, _paint);
+                 canvas.DrawLine(lineX - _rectSize, 50 + _rectSize*2, lineX - _rectSize, screenHeight-120 - _rectSize*2, _paint);
+                 canvas.DrawLine(lineX + _rectSize, 50 + _rectSize*2, lineX + _rectSize, screenHeight-120 - _rectSize*2, _paint);
 
                  
-                 canvas.DrawRect(circleX - _circleRadius, screenHeight/2 - _circleRadius, circleX + _circleRadius,screenHeight/2 + _circleRadius, _rect);
-                 //canvas.DrawCircle(circleX, screenHeight / 2, _circleRadius, _circle);
+                 canvas.DrawRect(circleX - _rectSize, screenHeight/2 - _rectSize - 40, circleX + _rectSize,screenHeight/2 + _rectSize - 40, _rect);
                  
                  var borderLeft = "-20";
                  var borderRight = "+20";
@@ -747,7 +745,19 @@ namespace Tuner
                  var frequencyText = "Frequency: " + parsedFrequency.ToString("F2");
                  canvas.DrawText(frequencyText, Width/2 -140, _paint.TextSize, _paint);
                  var note = "Note " + Note + " Frequency " + Frequency.ToString("F2"); 
-                 canvas.DrawText(note, Width/2 -200, screenHeight-5, _paint);
+                 canvas.DrawText(note, Width/2 -200, screenHeight-80, _paint);
+
+                 var hint = "";
+                 if (percentage > 0.5)
+                 {
+                     hint = "Ослабте струну";
+                   
+                 }else if (percentage < 0.5)
+                 {
+                     hint = "Подкрутите струну";
+                    
+                 }
+                 canvas.DrawText(hint, Width/2 -180, screenHeight-50 +_paint.TextSize , _paint);
              }
 
          }
