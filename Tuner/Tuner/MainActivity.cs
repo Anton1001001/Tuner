@@ -754,7 +754,7 @@ namespace Tuner
                    
                  }else if (percentage < 0.5)
                  {
-                     hint = "Подкрутите струну";
+                     hint = "Подтяните струну";
                     
                  }
                  canvas.DrawText(hint, Width/2 -180, screenHeight-50 +_paint.TextSize , _paint);
